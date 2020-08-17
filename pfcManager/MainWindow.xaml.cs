@@ -27,5 +27,3 @@ namespace pfcManager
     }
 }
 
-//dotnet ef dbcontext scaffold "Host=localhost;Database=pfcManager;Username=postgress;Password=1" Npgsql.EntityFrameworkCore.PostgreSQL
-//Scaffold-DbContext "Host=localhost;Database=pfcManager;Username=postgress;Password=1" Npgsql.EntityFrameworkCore.PostgreSQL

@@ -1,16 +1,17 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System;
 
 namespace pfcManager.Model
 {
-    public partial class pfcManagerContext : DbContext
+    public partial class ModelContext : DbContext
     {
-        public pfcManagerContext()
+        public ModelContext()
         {
         }
 
-        public pfcManagerContext(DbContextOptions<pfcManagerContext> options)
+        public ModelContext(DbContextOptions<ModelContext> options)
             : base(options)
         {
         }
@@ -26,8 +27,8 @@ namespace pfcManager.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=pfcManager;Username=postgres;Password=1");
+                string connectingString = Settings1.Default.ConnectionString;
+                optionsBuilder.UseNpgsql(connectingString);
             }
         }
 
