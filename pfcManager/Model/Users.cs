@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace pfcManager.Model
 {
-    public partial class Users
+    public partial class Users 
     {
         public Users()
         {
@@ -24,5 +25,6 @@ namespace pfcManager.Model
         public virtual ICollection<Eating> Eating { get; set; }
         public virtual ICollection<Sports> Sports { get; set; }
         public virtual ICollection<Weight> Weight { get; set; }
+
     }
 }
