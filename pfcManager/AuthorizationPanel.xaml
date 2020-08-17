@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#64AAD0">
+    
     <UserControl.Resources>
         <Style x:Key="DefStyle">
             <Setter Property="Control.FontSize" Value="16" />
@@ -17,13 +18,13 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.7*"/>
             <RowDefinition/>
             <RowDefinition Height="0.4*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="0.4*"/>
         </Grid.ColumnDefinitions>
@@ -33,13 +34,13 @@
             Grid.Column="1" 
             HorizontalAlignment="Center"
             >
-
             <TextBlock 
                 Style="{StaticResource DefStyle}"
                 Margin="3"
                 >Логин</TextBlock>
             <TextBox
                 Style="{StaticResource DefStyle}"
+                Text="{Binding Login}"
                 ></TextBox>
             <TextBlock
                 Style="{StaticResource DefStyle}"
@@ -47,12 +48,27 @@
                 >Пароль</TextBlock>
             <PasswordBox
                 Style="{StaticResource DefStyle}"
+                x:Name="PasswordBox"
                 ></PasswordBox>
             <Button
                 Style="{StaticResource DefStyle}"
                 Margin="0, 15, 0, 0"
+                Foreground="Black"
+                Command="{Binding AuthorizationCommand}"
+                CommandParameter="{Binding ElementName=PasswordBox}"
                 >Авторизация</Button>
-            
+            <TextBlock
+                Style="{StaticResource DefStyle}"
+                Margin="0, 0, 0, 0"
+                x:Name="resultAuth" 
+                TextAlignment="Center"
+                FontSize="17"
+                Foreground="Red"
+                TextWrapping="Wrap"
+                MaxWidth="200"
+                Text="{Binding ErrorText, UpdateSourceTrigger=PropertyChanged}"
+                />
+
         </StackPanel>
         
     </Grid>

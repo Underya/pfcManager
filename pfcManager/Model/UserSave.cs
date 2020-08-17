@@ -63,7 +63,9 @@ namespace pfcManager.Model
             using (ModelContext tc = new ModelContext())
             {
                 UserSave us = null; 
-                us = new UserSave( tc.Users.Where(p => p.Login == login).FirstOrDefault());
+                Users users = tc.Users.Where(p => p.Login == login).FirstOrDefault();
+                if (users == null) return null;
+                us = new UserSave(users);
                 return us;
             }
         }

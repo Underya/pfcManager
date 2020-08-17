@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using pfcManager.Model;
 
 namespace pfcManager
 {
@@ -16,18 +17,33 @@ namespace pfcManager
         static MainWindow mainWindow = null;
 
         /// <summary>
+        /// Авторизированный пользователь
+        /// </summary>
+        static UserSave currentUser = null;
+
+        /// <summary>
         /// Указание главного окна приложений
         /// </summary>
         /// <param name="mainWindow"></param>
-        static void SetMainWindow(MainWindow mainWindow)
+        static public void SetMainWindow(MainWindow mainWindow)
         {
             PanelManager.mainWindow = mainWindow;
         }
 
         /// <summary>
+        /// Авторизированный пользователь
+        /// </summary>
+        public static UserSave CurrentUser
+        {
+            get { return currentUser; }
+            set { currentUser = value; }
+        }
+
+        /// <summary>
         /// Открытие панели для авторизации
         /// </summary>
-        static void GoAuthotizatePanel()
+        /// <param name="exit">Если пользователь был авторизирован, надо ли выходить</param>
+        static public void GoAuthotizatePanel(bool exit = false)
         {
             mainWindow.Content = new AuthorizationPanel();
         }

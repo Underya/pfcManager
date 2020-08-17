@@ -21,6 +21,8 @@ namespace pfcManager
         public AuthorizationPanel()
         {
             InitializeComponent();
+            //Устанока View-Model для объекта
+            DataContext = new AuthorizationModel();
         }
     }
 }

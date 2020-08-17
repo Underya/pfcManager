@@ -23,8 +23,18 @@ namespace pfcManager
         public MainWindow()
         {
             InitializeComponent();
+            PanelManager.SetMainWindow(this);
         }
 
+        /// <summary>
+        /// При загрузке - переход на окно авторизации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            PanelManager.GoAuthotizatePanel();
+        }
     }
 }
 
