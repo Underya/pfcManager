@@ -17,6 +17,11 @@ namespace pfcManager
         static MainWindow mainWindow = null;
 
         /// <summary>
+        /// Получение id текущего пользователя
+        /// </summary>
+        public static long CurrentUserId { get { return CurrentUser.Id; } }
+
+        /// <summary>
         /// Авторизированный пользователь
         /// </summary>
         public static UserSave currentUser = null;
