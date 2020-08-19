@@ -41,7 +41,7 @@ namespace pfcManager
         {
             userSave = PanelManager.CurrentUser;
             //По умолчанию открывается главная страница
-            //selectFrame = new firstPage();
+            selectFrame = new firstPage();
         }
 
         /// <summary>

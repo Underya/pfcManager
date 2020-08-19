@@ -6,8 +6,60 @@
              xmlns:local="clr-namespace:pfcManager.FirstPage"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="Red">
+             Background="AntiqueWhite"
+             >
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+    
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        
+        <!--Показ количества колорий за сегодняшний день-->
+        <StackPanel>
+            <Label 
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Center"
+                FontSize="16"
+                Margin="1"> Сумма калорий</Label>
+            <TextBox
+                DockPanel.Dock="Top"
+                Margin="20, 0, 20, 0"
+                IsReadOnly="True"
+                MinHeight="30"
+                FontSize="15"
+                Background="#DEDEDE"
+                TextAlignment="Center"
+                Text="{Binding CurrentCall}"
+                />
+        </StackPanel>
+        
+        <!-- Текущий вес-->
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="2">
+            <Label 
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Center"
+                FontSize="16"
+                Margin="1">Текуший вес</Label>
+            <TextBox
+                DockPanel.Dock="Top"
+                Margin="20, 0, 20, 0"
+                IsReadOnly="False"
+                MinHeight="30"
+                FontSize="16"
+                TextAlignment="Center"
+                Text="{Binding CurrentWeight}"
+                />
+        </StackPanel>
     </Grid>
 </UserControl>
