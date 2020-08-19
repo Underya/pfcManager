@@ -56,7 +56,7 @@
                 Style="{StaticResource DefStyle}"
                 Margin="0, 15, 0, 0"
                 Foreground="Black"
-                Command="{Binding AuthorizationCommand}"
+                Command="{Binding AuthorizationCommands}"
                 CommandParameter="{Binding ElementName=PasswordBox}"
                 >Авторизация</Button>
             <TextBlock

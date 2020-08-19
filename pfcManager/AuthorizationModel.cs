@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace pfcManager
 {
@@ -21,7 +22,7 @@ namespace pfcManager
 
         public string Login { set; get; }
 
-        public AuthorizationCommand AuthorizationCommand
+        public AuthorizationCommand AuthorizationCommands
         {
             get
             {

@@ -3,13 +3,27 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
+
 namespace pfcManager
 {
     /// <summary>
-    /// Команда авторизации пользоваотеля
+    /// Комманда для выхода на меню авторизации
     /// </summary>
-    class AuthorizationCommand : ICommand
+    class ExitCommand : ICommand
     {
+        public ExitCommand(Func<object, bool> canExecute = null) 
+        {
+            this.execute = Exit;
+        }
+
+        /// <summary>
+        /// Переход на страницу авторизации
+        /// </summary>
+        void Exit(object obj)
+        {
+            PanelManager.GoAuthotizatePanel(true);
+        }
+
         /// <summary>
         /// Действие, выполняемое командой
         /// </summary>
@@ -27,17 +41,6 @@ namespace pfcManager
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
-        }
-
-        /// <summary>
-        /// Создание комманды с указанными функциями
-        /// </summary>
-        /// <param name="execute"></param>
-        /// <param name="canExecute"></param>
-        public AuthorizationCommand(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            this.execute = execute;
-            this.canExecute = canExecute;
         }
 
         /// <summary>

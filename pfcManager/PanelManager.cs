@@ -19,7 +19,7 @@ namespace pfcManager
         /// <summary>
         /// Авторизированный пользователь
         /// </summary>
-        static UserSave currentUser = null;
+        public static UserSave currentUser = null;
 
         /// <summary>
         /// Указание главного окна приложений

@@ -21,6 +21,7 @@ namespace pfcManager
         public MainMenu()
         {
             InitializeComponent();
+            DataContext = new MainMenuVM();
         }
     }
 }
