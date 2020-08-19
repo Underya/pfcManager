@@ -44,7 +44,8 @@ namespace pfcManager
                 return;
             }
 
-            MessageBox.Show("ОК!");
+            PanelManager.CurrentUser = UserSave.GetUser(Login);
+            PanelManager.GoMainMenu();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

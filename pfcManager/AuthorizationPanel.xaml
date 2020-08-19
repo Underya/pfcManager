@@ -33,6 +33,7 @@
             Grid.Row="1"
             Grid.Column="1" 
             HorizontalAlignment="Center"
+            FocusManager.FocusedElement="{Binding ElementName=LoginBox}"
             >
             <TextBlock 
                 Style="{StaticResource DefStyle}"
@@ -41,6 +42,7 @@
             <TextBox
                 Style="{StaticResource DefStyle}"
                 Text="{Binding Login}"
+                x:Name="LoginBox"
                 ></TextBox>
             <TextBlock
                 Style="{StaticResource DefStyle}"

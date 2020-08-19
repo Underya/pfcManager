@@ -47,5 +47,13 @@ namespace pfcManager
         {
             mainWindow.Content = new AuthorizationPanel();
         }
+
+        /// <summary>
+        /// Переход в главное меню приложения
+        /// </summary>
+        static public void GoMainMenu()
+        {
+            mainWindow.Content = new MainMenu();
+        }
     }
 }
