@@ -69,21 +69,20 @@
                 Background="Aqua"
                 Style="{StaticResource GlobalElement}"
                 >
-                <Button>Главная</Button>
-                <Button>История</Button>
+                <Button
+                    Command="{Binding SelectFirstFrame}"
+                    >Главная</Button>
+                <Button
+                    Command="{Binding SelectDayFrame}"
+                    >История</Button>
             </StackPanel>
         </Border>
         
         <Border
-             Grid.Column="1"
-             Grid.Row="1"
+            Grid.Column="1"
+            Grid.Row="1"
             >
-            <Grid 
-               
-                Background="White"
-                Style="{StaticResource GlobalElement}"
-                >
-            </Grid>
+            <ContentControl Content="{Binding SelectFrame}" />
         </Border>
 
     </Grid>
