@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
@@ -66,7 +67,7 @@ namespace pfcManager.FirstPage
         /// <summary>
         /// Коллекция инфорации о еде
         /// </summary>
-        ObservableCollection<EatingUpdate> eatings = null;
+        ObservableCollection<EatingUpdate> eatings = new ObservableCollection<EatingUpdate>();
 
         /// <summary>
         /// Текущая выбрнная еда
@@ -135,12 +136,16 @@ namespace pfcManager.FirstPage
         {
             get
             {
-                //Если пользователь уже сохранил информацию, то она выводится
-                if (eatings != null)
-                    return eatings;
+                //Очищение
+                eatings.Clear();
+                //Получение всей информации о еде за сегодня
+                List<Eating> eatingsCol = Eating.GetEatings(DateTime.Now);
+                //Обёртка их в класс коллекции
+                foreach(Eating eating in eatingsCol)
+                {
+                    eatings.Add(new EatingUpdate(eating));
+                }
 
-                //Если не было информации, то создаётся пустая коллекция с 7 значениями
-                eatings = new ObservableCollection<EatingUpdate>();
                 return eatings;
             }
             set
@@ -236,8 +241,6 @@ namespace pfcManager.FirstPage
             OnPropertyChanged("Foods");
         }
 
-        public string Text { get { return "Text"; } set { } }
-
         /// <summary>
         /// Добавление нового блюда
         /// </summary>
@@ -268,7 +271,6 @@ namespace pfcManager.FirstPage
             }
 
             EatingUpdate eatingUpdate = new EatingUpdate(eating);
-            Eatings.Add(eatingUpdate);
             OnPropertyChanged("Foods");
             OnPropertyChanged("CurrentCall");
         }

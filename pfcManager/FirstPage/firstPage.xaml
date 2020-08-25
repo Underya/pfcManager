@@ -9,7 +9,10 @@
              Background="AntiqueWhite"
              >
     <UserControl.Resources>
-        
+        <Style
+             TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="3, 0, 3, 0"/>
+        </Style>
     </UserControl.Resources>
     
     <Grid>
@@ -79,8 +82,21 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel 
-                        Margin="2">
-                            <TextBox FontSize="15" Text="{Binding Path=IdUpd, UpdateSourceTrigger=PropertyChanged}"/>
+                            Orientation="Horizontal"
+                            Margin="2">
+                            <TextBlock 
+                                FontSize="15"
+                                Margin="4, 0, 4, 0"
+                                Text="{Binding Path=FoodName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox 
+                                FontSize="15" 
+                                Margin="4, 0, 4, 0"
+                                BorderThickness="0"
+                                Text="{Binding Path=WeightUpd}"/>
+                            <TextBlock 
+                                FontSize="15" 
+                                Margin="4, 0, 4, 0"
+                                Text="{Binding Path=GetResultKkal}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -112,7 +128,6 @@
                     FontSize="20"
                     DockPanel.Dock="Top"
                     SelectedItem="{Binding SelectedFood, Mode=TwoWay, TargetNullValue=- }"
-                    SelectedValue="{Binding Text}"
                     >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
