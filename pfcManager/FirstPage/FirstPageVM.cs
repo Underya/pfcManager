@@ -31,6 +31,7 @@ namespace pfcManager.FirstPage
                     try
                     {
                         AddNewEating();
+                        ClearDate();
                     } catch(Exception exc)
                     {
                         MessageBox.Show(exc.Message, "Ошибка!");
@@ -224,6 +225,20 @@ namespace pfcManager.FirstPage
         }
 
         /// <summary>
+        /// Очищение информации 
+        /// </summary>
+        void ClearDate()
+        {
+            EatingWeight = 0;
+            SelectedFood = null;
+            OnPropertyChanged("EatingWeight");
+            OnPropertyChanged("SelectedFood");
+            OnPropertyChanged("Foods");
+        }
+
+        public string Text { get { return "Text"; } set { } }
+
+        /// <summary>
         /// Добавление нового блюда
         /// </summary>
         void AddNewEating()
@@ -255,6 +270,7 @@ namespace pfcManager.FirstPage
             EatingUpdate eatingUpdate = new EatingUpdate(eating);
             Eatings.Add(eatingUpdate);
             OnPropertyChanged("Foods");
+            OnPropertyChanged("CurrentCall");
         }
 
         /// <summary>

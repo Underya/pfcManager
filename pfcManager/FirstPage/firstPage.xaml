@@ -111,7 +111,9 @@
                     ItemsSource="{Binding Foods}"
                     FontSize="20"
                     DockPanel.Dock="Top"
-                    SelectedItem="{Binding SelectedFood, Mode=TwoWay}">
+                    SelectedItem="{Binding SelectedFood, Mode=TwoWay, TargetNullValue=- }"
+                    SelectedValue="{Binding Text}"
+                    >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
