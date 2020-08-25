@@ -24,8 +24,10 @@ namespace pfcManager.FirstPage
         /// Комманда удаления позиции
         /// </summary>
         AcceptCommand deleteEatComm = null;
-
         
+        /// <summary>
+        /// Комманда удаления позиция из списка
+        /// </summary>
         public AcceptCommand DeleteEatingCommand
         {
             get
@@ -33,12 +35,31 @@ namespace pfcManager.FirstPage
                 return deleteEatComm ??
                     (deleteEatComm = new AcceptCommand(obj =>
                     {
+                        //Если не выбрано окно
+                        if (obj == null)
+                        {
+                            MessageBox.Show("Не выбран приём пищи!");
+                            return;
+                        }
+
                         EatingUpdate eatingUpdate = (EatingUpdate)obj;
+                        using(ModelContext mc = new ModelContext())
+                        {
+                            mc.Eating.Remove(eatingUpdate);
+                            mc.SaveChanges();
+                        }
+                        //Обновление каллорий за день
+                        OnPropertyChanged("CurrentCall");
+                        //Обновление всей еды за сегодня
+                        OnPropertyChanged("Eatings");
                     }));
             }
         }
 
-        EatingUpdate selectEatingUpd = null;
+        /// <summary>
+        /// Выбрнная еда из мнею добавления
+        /// </summary>
+        EatingUpdate selectEatingUpd;
 
         /// <summary>
         /// Выбранная еда в меню еды
@@ -55,7 +76,6 @@ namespace pfcManager.FirstPage
                 OnPropertyChanged("SelectEatingUpd");
             }
         }
-
 
         /// <summary>
         /// Комманда добавления нового блюда
