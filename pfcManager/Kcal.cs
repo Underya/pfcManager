@@ -27,7 +27,7 @@ namespace pfcManager
         {
             get 
             {
-                return Weight * KcalNorm / 100.0;
+                return Math.Round( Weight * KcalNorm / 100.0, 1);
             }
         }
 

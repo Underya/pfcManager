@@ -17,8 +17,9 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="1*"
+                              x:Name="MyColumn"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -66,7 +67,7 @@
             
         </StackPanel>
 
-        <!-- Панель, которая показывает еду за текущую сессию-->
+        <!-- Панель, которая показывает еду за текущий день-->
         <Border
             Grid.Row="1"
             Grid.Column="1"
@@ -78,26 +79,96 @@
             Grid.Row="1"
             Grid.Column="1"
             Margin="10, 10, 10, 10"
+            x:Name="BoxTable"
             ItemsSource="{Binding Eatings, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel 
-                            Orientation="Horizontal"
-                            Margin="2">
-                            <TextBlock 
-                                FontSize="15"
+                        <Border
+                            BorderBrush="Black"
+                            BorderThickness="2"
+                            >
+                        <Grid
+                            Margin="5"
+                            Width="340"
+                            >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="1*"
+                                        />
+                                    <ColumnDefinition
+                                        Width="1*"
+                                        />
+                                    <ColumnDefinition
+                                        Width="1.3*"
+                                        />
+                                    <ColumnDefinition
+                                        Width="1.3*"
+                                        />
+                                    <ColumnDefinition
+                                        Width="0.9*"
+                                        />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Дата-->
+                                <TextBlock
+                                    Grid.Column="0"
+                                    FontSize="12"
+                                    Text="{Binding StringFormat=\{0:HH:mm\}, Path=Datatime}"/>
+
+                                <!-- Название блюда-->
+                                <TextBlock 
+                                Grid.Column="1"
+                                DockPanel.Dock="Left"
+                                FontSize="12"
                                 Margin="4, 0, 4, 0"
                                 Text="{Binding Path=FoodName, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBox 
-                                FontSize="15" 
-                                Margin="4, 0, 4, 0"
-                                BorderThickness="0"
-                                Text="{Binding Path=WeightUpd}"/>
-                            <TextBlock 
-                                FontSize="15" 
-                                Margin="4, 0, 4, 0"
-                                Text="{Binding Path=GetResultKkal}"/>
-                        </StackPanel>
+
+                                <!-- Вес блюда-->
+                                <StackPanel 
+                                    HorizontalAlignment="Left"
+                                    Grid.Column="2"
+                                    Orientation="Horizontal">
+                                    
+                                <TextBox 
+                                    DockPanel.Dock="Top"
+                                    FontSize="12" 
+                                    Margin="4, 0, 0, 0"
+                                    BorderThickness="0"
+                                    Text="{Binding Path=WeightUpd}"/>
+                                    
+                                <TextBlock
+                                    DockPanel.Dock="Top"
+                                    Margin="0, 0, 0, 4"
+                                    FontSize="12"
+                                    Text="Грамм"/>
+                                </StackPanel>
+
+                                <!-- Суммарная калорийность-->
+                                <StackPanel 
+                                    HorizontalAlignment="Left"
+                                    Grid.Column="3"
+                                    Orientation="Horizontal">
+                                <TextBlock 
+                                    DockPanel.Dock="Right"
+                                    FontSize="12" 
+                                    Margin="4, 0, 1, 0"
+                                    Text="{Binding Path=GetResultKkal}"/>
+                                <TextBlock
+                                    DockPanel.Dock="Right"
+                                    Margin="0, 0, 0, 4"
+                                    FontSize="12"
+                                    Text="Ккал"/>
+                                </StackPanel>
+                            
+                            <!--Кнопка удаления-->
+                            <Button
+                                FontSize="10"
+                                Grid.Column="5"
+                                Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor}, Path=DeleteEatingCommand}"
+                                Content="Удалить"/>
+                            
+                        </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

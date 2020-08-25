@@ -21,6 +21,23 @@ namespace pfcManager.FirstPage
     {
 
         /// <summary>
+        /// Комманда удаления позиции
+        /// </summary>
+        AcceptCommand deleteEatComm = null;
+
+        public AcceptCommand DeleteEatingCommand
+        {
+            get
+            {
+                return deleteEatComm ??
+                    (deleteEatComm = new AcceptCommand(obj =>
+                    {
+                        object o = obj;
+                    }));
+            }
+        }
+
+        /// <summary>
         /// Комманда добавления нового блюда
         /// </summary>
         public AcceptCommand SaveCommand 
@@ -121,7 +138,7 @@ namespace pfcManager.FirstPage
         {
             get
             {
-                return SelectedFood.Kkal * EatingWeight / 100.0;
+                return (new Kcal(SelectedFood.Kkal, EatingWeight));
             }
             set
             {
@@ -182,9 +199,9 @@ namespace pfcManager.FirstPage
                         summ += (new Kcal(kcal, weight));
                     }
                 }
-
+                
                 //Получение всего съеденного за сегодня
-                return summ.ToString();
+                return Math.Round(summ, 1).ToString();
             }
             set
             {

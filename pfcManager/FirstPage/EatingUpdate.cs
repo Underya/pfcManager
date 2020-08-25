@@ -70,7 +70,9 @@ namespace pfcManager.FirstPage
             set
             {
                 Weight = value;
+                SaveChange();
                 OnPropertyChanged("WeightUpd");
+                OnPropertyChanged("GetResultKkal");
             }
         }
 
@@ -131,6 +133,18 @@ namespace pfcManager.FirstPage
             Idfood = eating.Idfood;
             Idusers = eating.Idusers;
             Datatime = eating.Datatime;
+        }
+
+        /// <summary>
+        /// Сохранение измененёной информации об объекте на сервере БД
+        /// </summary>
+        void SaveChange()
+        {
+            using(ModelContext mc = new ModelContext())
+            {
+                mc.Entry(this).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                mc.SaveChanges();
+            }
         }
 
         /// <summary>
