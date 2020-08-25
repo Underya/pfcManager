@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +7,8 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Runtime.CompilerServices;
 using pfcManager.Model;
+using System.Windows.Input;
+using System.Windows;
 
 namespace pfcManager.FirstPage
 {
@@ -16,6 +18,42 @@ namespace pfcManager.FirstPage
     class FirstPageVM :
         INotifyPropertyChanged
     {
+
+        /// <summary>
+        /// Коллекция инфорации о еде
+        /// </summary>
+        ObservableCollection<EatingUpdate> eatings = null;
+
+        /// <summary>
+        /// Свойство для изменения информации о еде
+        /// </summary>
+        public ObservableCollection<EatingUpdate> Eatings 
+        {
+            get
+            {
+                //Если пользователь уже сохранил информацию, то она выводится
+                if (eatings != null)
+                    return eatings;
+
+                //Если не было информации, то создаётся пустая коллекция с 7 значениями
+                eatings = new ObservableCollection<EatingUpdate>();
+                for(int i = 0; i < 5; i++)
+                    eatings.Add(new EatingUpdate() { Id = i });
+                eatings.CollectionChanged += Eatings_CollectionChanged;
+                return eatings;
+            }
+            set
+            {
+                eatings = value;
+            }
+        }
+
+        private void Eatings_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            MessageBox.Show("YEEEES!");
+        }
+
+
         /// <summary>
         /// Получение количества ккалорий за сегодняшний день за всю еду
         /// </summary>

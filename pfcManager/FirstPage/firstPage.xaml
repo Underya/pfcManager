@@ -60,6 +60,22 @@
                 TextAlignment="Center"
                 Text="{Binding CurrentWeight}"
                 />
+            
         </StackPanel>
+
+        <!-- Панель для добавления новой еды -->
+        <ListBox 
+            Grid.Row="1"
+            Margin="10, 5, 5, 0"
+            ItemsSource="{Binding Eatings, UpdateSourceTrigger=PropertyChanged}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel 
+                        Margin="2">
+                        <TextBox FontSize="15" Text="{Binding Path=IdUpd, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
