@@ -65,7 +65,45 @@ namespace pfcManager.FirstPage
             {
                 food = value;
                 OnPropertyChanged("SelectedFood");
+                OnPropertyChanged("ResultKkal");
             } 
+        }
+
+        /// <summary>
+        /// Вес блюда, указнный в форме
+        /// </summary>
+        double eatingWeight = 0.0;
+
+        /// <summary>
+        /// </summary>
+        /// Вес блюда
+        public double EatingWeight 
+        {
+            get
+            {
+                return eatingWeight;
+            }
+            set
+            {
+                eatingWeight = value;
+                OnPropertyChanged("EatingWeight");
+                OnPropertyChanged("ResultKkal");
+            }
+        }
+
+        /// <summary>
+        /// Результирующая калорийность блюда
+        /// </summary>
+        public double ResultKkal
+        {
+            get
+            {
+                return SelectedFood.Kkal * EatingWeight / 100.0;
+            }
+            set
+            {
+
+            }
         }
 
         /// <summary>

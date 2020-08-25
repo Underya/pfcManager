@@ -125,38 +125,80 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
+
+                <!--Ккил и указание веса -->
+                <Grid
+                    Margin="3"
+                    DockPanel.Dock="Top">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    
+                    <!-- ККал-->
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        FontSize="20"
+                        DockPanel.Dock="Top">
+                        Ккал
+                    </Label>
+                    <TextBox
+                        Margin="1"
+                        Grid.Row="1"
+                        FontSize="20"
+                        IsReadOnly="True"
+                        DockPanel.Dock="Top"
+                        Background="#DEDEDE"
+                        DataContext="{Binding SelectedFood}"
+                        Text="{Binding Path=Kkal}"
+                        >
+                    </TextBox>
             
-                <!-- ККал-->
-                <Label 
-                HorizontalAlignment="Center"
-                FontSize="20"
-                DockPanel.Dock="Top">
-                Ккал
-            </Label>
-                <TextBox
-                    FontSize="20"
-                    IsReadOnly="True"
+                    <!--Вес блюда-->
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        FontSize="20"
+                        DockPanel.Dock="Top"
+                        >
+                        Вес в граммах
+                    </Label>
+                    <TextBox 
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontSize="20"
+                        Margin="1,1,0,1"
+                        Text="{Binding EatingWeight}"
+                        DockPanel.Dock="Top">
+                    </TextBox>
+                </Grid>
+
+                <!-- Общая калорийность-->
+                <Label
                     DockPanel.Dock="Top"
+                    FontSize="20"
+                    Margin="20, 15, 20, 0"
+                    HorizontalAlignment="Center"
+                    Content="Общая калорийность"
+                    />
+                <TextBox
+                    FontSize="18"
+                    Margin="40, 0, 40, 0"
+                    DockPanel.Dock="Top"
+                    IsReadOnly="True"
                     Background="#DEDEDE"
-                    DataContext="{Binding SelectedFood}"
-                    Text="{Binding Path=Kkal}"
-                    >
-                </TextBox>
-            
-                <!--Вес блюда-->
-                <Label 
-                HorizontalAlignment="Center"
-                FontSize="20"
-                DockPanel.Dock="Top"
-                >
-                Вес в граммах
-            </Label>
-                <TextBox 
-                FontSize="20"
-                DockPanel.Dock="Top">
-                
-            </TextBox>
-            
+                    Text="{Binding ResultKkal}"
+                    />
+
                 <!--Кнопка добавления -->
                 <Button 
                 Margin="40, 30, 40, 0"
