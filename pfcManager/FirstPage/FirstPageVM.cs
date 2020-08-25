@@ -25,6 +25,7 @@ namespace pfcManager.FirstPage
         /// </summary>
         AcceptCommand deleteEatComm = null;
 
+        
         public AcceptCommand DeleteEatingCommand
         {
             get
@@ -32,10 +33,29 @@ namespace pfcManager.FirstPage
                 return deleteEatComm ??
                     (deleteEatComm = new AcceptCommand(obj =>
                     {
-                        object o = obj;
+                        EatingUpdate eatingUpdate = (EatingUpdate)obj;
                     }));
             }
         }
+
+        EatingUpdate selectEatingUpd = null;
+
+        /// <summary>
+        /// Выбранная еда в меню еды
+        /// </summary>
+        public EatingUpdate SelectEatingUpd 
+        {
+            get
+            {
+                return selectEatingUpd;
+            }
+            set
+            {
+                selectEatingUpd = value;
+                OnPropertyChanged("SelectEatingUpd");
+            }
+        }
+
 
         /// <summary>
         /// Комманда добавления нового блюда
