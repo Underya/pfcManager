@@ -20,6 +20,27 @@ namespace pfcManager.FirstPage
     {
 
         /// <summary>
+        /// Комманда добавления нового блюда
+        /// </summary>
+        public AcceptCommand SaveCommand 
+        { 
+            get
+            {
+                return new AcceptCommand(o =>
+                {
+                    try
+                    {
+                        AddNewEating();
+                    } catch(Exception exc)
+                    {
+                        MessageBox.Show(exc.Message, "Ошибка!");
+                        return;
+                    }
+                });
+            } 
+        }
+
+        /// <summary>
         /// Коллекция со всеми видами еды
         /// </summary>
         ObservableCollection<Food> foods =null;
@@ -57,7 +78,7 @@ namespace pfcManager.FirstPage
         public Food SelectedFood 
         { 
             get 
-            { 
+            {
                 return food ??
                     (food = new Food()); 
             }
@@ -72,12 +93,12 @@ namespace pfcManager.FirstPage
         /// <summary>
         /// Вес блюда, указнный в форме
         /// </summary>
-        double eatingWeight = 0.0;
+        float eatingWeight = 0.0F;
 
         /// <summary>
         /// </summary>
         /// Вес блюда
-        public double EatingWeight 
+        public float EatingWeight 
         {
             get
             {
@@ -200,6 +221,40 @@ namespace pfcManager.FirstPage
                 }
                 OnPropertyChanged("CurrentWeight");
             }
+        }
+
+        /// <summary>
+        /// Добавление нового блюда
+        /// </summary>
+        void AddNewEating()
+        {
+            if(SelectedFood == null || SelectedFood.Id == 0)
+            {
+                MessageBox.Show("Не выбрано блюдо");
+                return;
+            }
+                
+            if(EatingWeight == 0.0) 
+            {
+                MessageBox.Show("Не указан вес блюда");
+                return;
+            }
+
+            Eating eating = new Eating();
+            eating.Datatime = DateTime.Now;
+            eating.Idfood = SelectedFood.Id;
+            eating.Idusers = PanelManager.CurrentUserId;
+            eating.Weight = eatingWeight;
+
+            using (ModelContext mc = new ModelContext())
+            {
+                mc.Eating.Add(eating);
+                mc.SaveChanges();
+            }
+
+            EatingUpdate eatingUpdate = new EatingUpdate(eating);
+            Eatings.Add(eatingUpdate);
+            OnPropertyChanged("Foods");
         }
 
         /// <summary>

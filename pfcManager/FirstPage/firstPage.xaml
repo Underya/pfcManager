@@ -201,12 +201,13 @@
 
                 <!--Кнопка добавления -->
                 <Button 
-                Margin="40, 30, 40, 0"
-                DockPanel.Dock="Top"
-                FontSize="20"
-                >
-                Добавить 
-            </Button>
+                    Margin="40, 30, 40, 0"
+                    DockPanel.Dock="Top"
+                    FontSize="20"
+                    Command="{Binding SaveCommand}"
+                    >
+                    Добавить 
+                </Button>
             
             </DockPanel>
         </Border>
