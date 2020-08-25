@@ -20,6 +20,28 @@ namespace pfcManager.FirstPage
     {
 
         /// <summary>
+        /// Коллекция со всеми видами еды
+        /// </summary>
+        ObservableCollection<Food> foods =null;
+
+        /// <summary>
+        /// Метод для получения всех видов еды
+        /// </summary>
+        public ObservableCollection<Food> Foods
+        {
+            get
+            {
+                return foods ??
+                    (foods = new ObservableCollection<Food>(Food.GetAllFood()));
+            }
+            set
+            {
+                foods = value;
+                OnPropertyChanged("Foods");
+            }
+        }
+
+        /// <summary>
         /// Коллекция инфорации о еде
         /// </summary>
         ObservableCollection<EatingUpdate> eatings = null;
@@ -37,9 +59,6 @@ namespace pfcManager.FirstPage
 
                 //Если не было информации, то создаётся пустая коллекция с 7 значениями
                 eatings = new ObservableCollection<EatingUpdate>();
-                for(int i = 0; i < 5; i++)
-                    eatings.Add(new EatingUpdate() { Id = i });
-                eatings.CollectionChanged += Eatings_CollectionChanged;
                 return eatings;
             }
             set
@@ -47,12 +66,6 @@ namespace pfcManager.FirstPage
                 eatings = value;
             }
         }
-
-        private void Eatings_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            MessageBox.Show("YEEEES!");
-        }
-
 
         /// <summary>
         /// Получение количества ккалорий за сегодняшний день за всю еду

@@ -63,19 +63,104 @@
             
         </StackPanel>
 
-        <!-- Панель для добавления новой еды -->
-        <ListBox 
+        <!-- Панель, которая показывает еду за текущую сессию-->
+        <Border
             Grid.Row="1"
-            Margin="10, 5, 5, 0"
+            Grid.Column="1"
+            BorderBrush="Black"
+            BorderThickness="3"
+            Margin="3"
+            >
+            <ListBox 
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="10, 10, 10, 10"
             ItemsSource="{Binding Eatings, UpdateSourceTrigger=PropertyChanged}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel 
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel 
                         Margin="2">
-                        <TextBox FontSize="15" Text="{Binding Path=IdUpd, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                            <TextBox FontSize="15" Text="{Binding Path=IdUpd, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+        
+        <!-- Выбор еды и указание её веса-->
+        <Border
+            Grid.Row="1"
+            Grid.Column="0"
+            BorderBrush="Black"
+            BorderThickness="3"
+            Margin="3"
+            >
+            <DockPanel
+                LastChildFill="False"
+                Margin="5">
+                <!-- Выбор блюда -->
+                <Label
+                Margin="5, 40, 5, 5"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                DockPanel.Dock="Top">
+                    Блюдо
+                </Label>
+                <ComboBox
+                    ItemsSource="{Binding Foods}"
+                    FontSize="20"
+                    DockPanel.Dock="Top">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=Name}"
+                                           Margin="0,0, 10,0"/>
+                                <TextBlock Text="{Binding Path=Kkal}"
+                                           />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            
+                <!-- ККал-->
+                <Label 
+                HorizontalAlignment="Center"
+                FontSize="20"
+                DockPanel.Dock="Top">
+                Ккал
+            </Label>
+                <TextBox
+                FontSize="20"
+                IsReadOnly="True"
+                DockPanel.Dock="Top">
+                
+            </TextBox>
+            
+                <!--Вес блюда-->
+                <Label 
+                HorizontalAlignment="Center"
+                FontSize="20"
+                DockPanel.Dock="Top"
+                >
+                Вес в граммах
+            </Label>
+                <TextBox 
+                FontSize="20"
+                DockPanel.Dock="Top">
+                
+            </TextBox>
+            
+                <!--Кнопка добавления -->
+                <Button 
+                Margin="40, 30, 40, 0"
+                DockPanel.Dock="Top"
+                FontSize="20"
+                >
+                Добавить 
+            </Button>
+            
+            </DockPanel>
+        </Border>
+        
     </Grid>
 </UserControl>

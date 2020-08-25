@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace pfcManager.Model
 {
@@ -17,6 +19,26 @@ namespace pfcManager.Model
         public float? Protein { get; set; }
         public float? Fats { get; set; }
         public float? Carbohydrates { get; set; }
+
+        /// <summary>
+        /// Вся еда из бд отсортированная по алфавиту
+        /// </summary>
+        /// <returns></returns>
+        public static Collection<Food> GetAllFood()
+        {
+            Collection<Food> AllFood = new Collection<Food>();
+            using (ModelContext mc = new ModelContext())
+            {
+                var foods = mc.Food.OrderBy(o => o.Name);
+                foreach (Food food in foods)
+                {
+                    AllFood.Add(food);
+                }
+                
+            }
+
+            return AllFood;
+        }
 
         public virtual ICollection<Eating> Eating { get; set; }
     }

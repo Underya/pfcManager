@@ -15,7 +15,7 @@ namespace pfcManager.FirstPage
     {
         public EatingUpdate()
         {
-
+            Id = -1;
         }
 
         public long IdUpd
