@@ -47,6 +47,28 @@ namespace pfcManager.FirstPage
         ObservableCollection<EatingUpdate> eatings = null;
 
         /// <summary>
+        /// Текущая выбрнная еда
+        /// </summary>
+        Food food = null;
+
+        /// <summary>
+        /// Выбранная в комбобоксе еда
+        /// </summary>
+        public Food SelectedFood 
+        { 
+            get 
+            { 
+                return food ??
+                    (food = new Food()); 
+            }
+            set 
+            {
+                food = value;
+                OnPropertyChanged("SelectedFood");
+            } 
+        }
+
+        /// <summary>
         /// Свойство для изменения информации о еде
         /// </summary>
         public ObservableCollection<EatingUpdate> Eatings 

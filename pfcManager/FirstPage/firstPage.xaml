@@ -98,6 +98,7 @@
             <DockPanel
                 LastChildFill="False"
                 Margin="5">
+                
                 <!-- Выбор блюда -->
                 <Label
                 Margin="5, 40, 5, 5"
@@ -109,13 +110,16 @@
                 <ComboBox
                     ItemsSource="{Binding Foods}"
                     FontSize="20"
-                    DockPanel.Dock="Top">
+                    DockPanel.Dock="Top"
+                    SelectedItem="{Binding SelectedFood, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Path=Name}"
-                                           Margin="0,0, 10,0"/>
+                                           Margin="5, 3, 10, 2"
+                                           />
                                 <TextBlock Text="{Binding Path=Kkal}"
+                                           Margin="5, 3, 10, 2"
                                            />
                             </StackPanel>
                         </DataTemplate>
@@ -130,11 +134,14 @@
                 Ккал
             </Label>
                 <TextBox
-                FontSize="20"
-                IsReadOnly="True"
-                DockPanel.Dock="Top">
-                
-            </TextBox>
+                    FontSize="20"
+                    IsReadOnly="True"
+                    DockPanel.Dock="Top"
+                    Background="#DEDEDE"
+                    DataContext="{Binding SelectedFood}"
+                    Text="{Binding Path=Kkal}"
+                    >
+                </TextBox>
             
                 <!--Вес блюда-->
                 <Label 
