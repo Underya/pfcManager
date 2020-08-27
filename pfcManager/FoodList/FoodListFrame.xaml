@@ -44,13 +44,17 @@
                     />
                 
                 <!-- Лист с едой -->
-                <ListBox
+                <ListView
                     ItemsSource="{Binding Foods}"
-                    Margin="15, 15, 15, 15">
-                    <ListBox.ItemTemplate>
+                    Margin="15, 15, 15, 15"
+                    SelectionMode="Single"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                    >
+                    <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel
                                 Orientation="Horizontal"
+                                MaxHeight="350"
                                 >
                                 
                                 <!--Название пищи-->
@@ -122,14 +126,16 @@
                                 <!-- Удаление -->
                                 <Button
                                     FontSize="14"
+                                    VerticalAlignment="Top"
+                                    Height="10"
                                     >
                                     Удалить
                                 </Button>
 
                             </StackPanel>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </ListView.ItemTemplate>
+                </ListView>
 
             </StackPanel>
         </Border>
@@ -236,6 +242,7 @@
                         Grid.RowSpan="2"
                         Grid.Column="5"
                         MaxHeight="35"
+                        Command="{Binding AddFoodCommand}"
                         >
                         Добавить
                     </Button>

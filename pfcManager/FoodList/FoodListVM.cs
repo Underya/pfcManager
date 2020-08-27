@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
+using System.Windows;
+using System.Windows.Input;
 
 namespace pfcManager.FoodList
 {
@@ -141,6 +143,73 @@ namespace pfcManager.FoodList
             }
         }
 
+        /// <summary>
+        /// Команда добавления нового блюда
+        /// </summary>
+        AcceptCommand addFoodCommand = null;
+
+        /// <summary>
+        /// Комманда для добавления новой еды
+        /// </summary>
+        public AcceptCommand AddFoodCommand
+        {
+            get
+            {
+                return addFoodCommand ??
+                    (addFoodCommand = new AcceptCommand(AddNewFood));
+            }
+        }
+
+        /// <summary>
+        /// Добавление нового блюда
+        /// </summary>
+        /// <param name="obj"></param>
+        public void AddNewFood(object obj = null)
+         {
+            //Проверка значений
+            if(FootName == null || FootName == string.Empty)
+            {
+                MessageBox.Show("Не введено название блюда");
+                return;
+            }
+
+            if(FootKKal == 0)
+            {
+                MessageBox.Show("Не введна калорийность блюда");
+                return;
+            }
+
+            using (ModelContext mc = new ModelContext())
+            {
+                FoodUpd food = new FoodUpd();
+                food.Name = FootName;
+                food.Kkal = FootKKal;
+                food.Protein = Protein;
+                food.Fats = Fats;
+                food.Carbohydrates = Carb;
+                mc.Food.Add(food);
+                mc.SaveChanges();
+            }
+
+            OnPropertyChanged("Foods");
+            ClearFootParams();
+        }
+
+        /// <summary>
+        /// Очищение всех введённых значений
+        /// </summary>
+        public void ClearFootParams()
+        {
+            FootName = string.Empty;
+            FootKKal = 0;
+            Protein = 0;
+            Fats = 0;
+            Carb = 0;
+        }
+
+        /// <summary>
+        /// Список всей еды,
+        /// </summary>
         public ObservableCollection<FoodUpd> Foods
         {
             get
