@@ -21,6 +21,8 @@ namespace pfcManager.FoodList
         public FoodListFrame()
         {
             InitializeComponent();
+            //Указание контекста
+            DataContext = new FoodListVM();
         }
     }
 }

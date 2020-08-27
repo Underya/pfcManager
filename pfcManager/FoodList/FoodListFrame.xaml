@@ -5,10 +5,251 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:pfcManager.FoodList"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="MaxLines" Value="1"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <!-- Основное меню объекта -->
     <Grid>
-        <Label
-            FontSize="40"
-            Content="FoodListFrame"/>
+        <Grid.RowDefinitions>
+            <!--Строка с таблицей еды-->
+            <RowDefinition Height="0.7*"/>
+            <!-- Строка с функций добавления новой еды-->
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+            
+        <!--Таблица со всей едой-->
+        <Border
+            Grid.Row="0"
+            BorderBrush="Black"
+            BorderThickness="3">
+            <StackPanel
+                Orientation="Vertical"
+                >
+                
+                <!-- Окно ввода для фильтрации -->
+                <Label
+                    Margin="15, 0, 15, 0"
+                    FontSize="16">
+                    Название блюда
+                </Label>
+                <TextBox
+                    Text="{Binding SortText}"
+                    Margin="15, 0, 15, 0"
+                    FontSize="16"
+                    />
+                
+                <!-- Лист с едой -->
+                <ListView
+                    ItemsSource="{Binding Foods}"
+                    Margin="15, 15, 15, 15"
+                    SelectionMode="Single"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                    >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                MaxHeight="350"
+                                >
+                                
+                                <!--Название пищи-->
+                                <TextBox
+                                    FontSize="15"
+                                    MaxLines="1"
+                                    MaxHeight="20"
+                                    Text="{Binding Path=Name}"
+                                    Margin="10, 5, 5, 5"
+                                    />
+                                
+                                <!--Калорийность-->
+                                <TextBox
+                                    FontSize="15"
+                                    MaxLines="1"
+                                    MaxHeight="20"
+                                    Text="{Binding Path=Kkal}"
+                                    Margin="10, 5, 2, 5"
+                                    />
+                                <TextBlock 
+                                    FontSize="15"
+                                    VerticalAlignment="Center"
+                                    TextAlignment="Center"
+                                    Text="Ккал"
+                                    />
+                                
+                                <!--Протеин-->
+                                <TextBox
+                                    FontSize="15"
+                                    MaxLines="1"
+                                    MaxHeight="20"
+                                    Text="{Binding Path=Protein}"
+                                    Margin="10, 5, 2, 5"
+                                    />
+                                <TextBlock 
+                                    FontSize="15"
+                                    VerticalAlignment="Center"
+                                    Text="Белки"
+                                    />
+                                
+                                <!-- Жиры -->
+                                <TextBox
+                                    FontSize="15"
+                                    MaxLines="1"
+                                    MaxHeight="20"
+                                    Text="{Binding Path=Fats}"
+                                    Margin="10, 5, 2, 5"
+                                    />
+                                <TextBlock 
+                                    FontSize="15"
+                                    VerticalAlignment="Center"
+                                    Text="Жиры"
+                                    />
+                                
+                                <!-- Углевод -->
+                                <TextBox
+                                    FontSize="15"
+                                    MaxLines="1"
+                                    MaxHeight="20"
+                                    Text="{Binding Path=Carbohydrates}"
+                                    Margin="10, 5, 2, 5"
+                                    />
+                                <TextBlock 
+                                    FontSize="15"
+                                    VerticalAlignment="Center"
+                                    Text="Углевод"
+                                    />
+                                    
+                                <!-- Удаление -->
+                                <Button
+                                    FontSize="14"
+                                    VerticalAlignment="Top"
+                                    Height="10"
+                                    >
+                                    Удалить
+                                </Button>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackPanel>
+        </Border>
+
+        <!-- Таблица для добавления еды-->
+        <DockPanel
+            Grid.Row="1">
+            <TextBlock
+                DockPanel.Dock="Top"
+                Margin="10, 0, 0, 0"
+                FontSize="13"
+                >Добавить новую еду</TextBlock>
+            <Border
+                DockPanel.Dock="Top"
+                BorderBrush="Black"
+                BorderThickness="3"
+                Margin="10, 5, 10, 10"
+                >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!--Название блюда-->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        >Название</Label>
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="10, 2, 10, 30"
+                        Text="{Binding FootName}"
+                        />
+                    
+                    <!-- Калорийность-->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        >Калорийность</Label>
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="10, 2, 10, 30"
+                        Text="{Binding FootKKal}"
+                        />
+
+                    <!-- Белки-->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        >Белки</Label>
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Text="{Binding Protein}"
+                        Margin="10, 2, 10, 30"
+                        />
+
+                    <!-- Жиры-->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        >Жиры</Label>
+                    <TextBox
+                        Grid.Row="1"
+                        Text="{Binding Fats}"
+                        Grid.Column="3"
+                        Margin="10, 2, 10, 30"
+                        />
+
+                    <!-- Углеводы -->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        >Углеводы</Label>
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        Text="{Binding Carb}"
+                        Margin="10, 2, 10, 30"
+                        />
+
+                    <Button
+                        Grid.RowSpan="2"
+                        Grid.Column="5"
+                        MaxHeight="35"
+                        Command="{Binding AddFoodCommand}"
+                        >
+                        Добавить
+                    </Button>
+                    
+                </Grid>
+            </Border>
+        </DockPanel>
+
     </Grid>
 </UserControl>

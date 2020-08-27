@@ -34,5 +34,29 @@ namespace pfcManager {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserLogin {
+            get {
+                return ((string)(this["UserLogin"]));
+            }
+            set {
+                this["UserLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PasswordUser {
+            get {
+                return ((string)(this["PasswordUser"]));
+            }
+            set {
+                this["PasswordUser"] = value;
+            }
+        }
     }
 }
