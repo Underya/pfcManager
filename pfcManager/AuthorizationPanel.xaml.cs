@@ -18,11 +18,11 @@ namespace pfcManager
     /// </summary>
     public partial class AuthorizationPanel : UserControl
     {
-        public AuthorizationPanel()
+        public AuthorizationPanel(bool exit = false)
         {
             InitializeComponent();
             //Устанока View-Model для объекта
-            DataContext = new AuthorizationModel();
+            DataContext = new AuthorizationModel(exit);
         }
 
         /// <summary>

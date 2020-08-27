@@ -30,9 +30,15 @@ namespace pfcManager
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
-        public AuthorizationModel()
+        public AuthorizationModel(bool exit = false)
         {
             SaveUser = true;
+            //Если происходит выход
+            if (exit)
+            {
+                SaveUser = false;
+                ClearSetting();
+            }
         }
 
         /// <summary>
