@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="MaxLines" Value="1"/>
+        </Style>
+    </UserControl.Resources>
+    
     <!-- Основное меню объекта -->
     <Grid>
         <Grid.RowDefinitions>
@@ -144,7 +150,7 @@
                 >
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2.5*"/>
                         <ColumnDefinition Width="1.3*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
@@ -167,6 +173,7 @@
                         Grid.Row="1"
                         Grid.Column="0"
                         Margin="10, 2, 10, 30"
+                        Text="{Binding FootName}"
                         />
                     
                     <!-- Калорийность-->
@@ -180,6 +187,7 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Margin="10, 2, 10, 30"
+                        Text="{Binding FootKKal}"
                         />
 
                     <!-- Белки-->
@@ -192,6 +200,7 @@
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="2"
+                        Text="{Binding Protein}"
                         Margin="10, 2, 10, 30"
                         />
 
@@ -204,6 +213,7 @@
                         >Жиры</Label>
                     <TextBox
                         Grid.Row="1"
+                        Text="{Binding Fats}"
                         Grid.Column="3"
                         Margin="10, 2, 10, 30"
                         />
@@ -218,6 +228,7 @@
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="4"
+                        Text="{Binding Carb}"
                         Margin="10, 2, 10, 30"
                         />
 

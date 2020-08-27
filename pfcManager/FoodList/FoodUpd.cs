@@ -11,6 +11,14 @@ namespace pfcManager.FoodList
     class FoodUpd : Food
     {
         /// <summary>
+        /// Создание пустого объекта
+        /// </summary>
+        public FoodUpd()
+        {
+
+        }
+
+        /// <summary>
         /// Конструктор для трансформации из базового типа в обновляемый
         /// </summary>
         /// <param name="food"></param>
