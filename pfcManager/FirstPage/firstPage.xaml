@@ -16,6 +16,7 @@
     </UserControl.Resources>
     
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.6*"/>
             <ColumnDefinition Width="1*"
