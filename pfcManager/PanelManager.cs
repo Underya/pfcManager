@@ -50,7 +50,7 @@ namespace pfcManager
         /// <param name="exit">Если пользователь был авторизирован, надо ли выходить</param>
         static public void GoAuthotizatePanel(bool exit = false)
         {
-            mainWindow.Content = new AuthorizationPanel();
+            mainWindow.Content = new AuthorizationPanel(exit);
         }
 
         /// <summary>

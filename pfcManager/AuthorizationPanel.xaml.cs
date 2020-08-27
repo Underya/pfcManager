@@ -18,11 +18,22 @@ namespace pfcManager
     /// </summary>
     public partial class AuthorizationPanel : UserControl
     {
-        public AuthorizationPanel()
+        public AuthorizationPanel(bool exit = false)
         {
             InitializeComponent();
             //Устанока View-Model для объекта
-            DataContext = new AuthorizationModel();
+            DataContext = new AuthorizationModel(exit);
+        }
+
+        /// <summary>
+        /// При загрузке ивызывается метод источника данных
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Передача информации о событии загрузки
+            ((AuthorizationModel)(DataContext)).Load();
         }
     }
 }
