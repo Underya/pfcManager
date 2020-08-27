@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using pfcManager.Model;
 using pfcManager.FirstPage;
 using pfcManager.DayStatist;
+using pfcManager.FoodList;
 
 namespace pfcManager
 {
@@ -77,6 +78,27 @@ namespace pfcManager
         }
 
         /// <summary>
+        /// Комманда для установления меню списка еды
+        /// </summary>
+        SelectFrameCommand selectedFoodList = null;
+
+        /// <summary>
+        /// Метод для получения комманда выбора еды
+        /// </summary>
+        public SelectFrameCommand SelectFoodList 
+        {
+            get
+            {
+                return selectedFoodList ??
+                    (selectedFoodList = new SelectFrameCommand(SetFoodList));
+            }
+            set 
+            {
+                selectedFoodList = value;
+            }
+        }
+
+        /// <summary>
         /// Установка первой страницы
         /// </summary>
         /// <param name="obj"></param>
@@ -87,6 +109,18 @@ namespace pfcManager
                 return;
             //Установка страницы
             SelectFrame = new firstPage();
+        }
+
+        /// <summary>
+        /// Установка страницы со списком еды
+        /// </summary>
+        /// <param name="obj"></param>
+        void SetFoodList(object obj)
+        {
+            //Если текущий фрейм совпдает - то ничего не делать
+            if (SelectFrame is FoodListFrame)
+                return;
+            SelectFrame = new FoodListFrame();
         }
 
         /// <summary>

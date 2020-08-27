@@ -73,6 +73,10 @@
                     Command="{Binding SelectFirstFrame}"
                     >Главная</Button>
                 <Button
+                    Command="{Binding SelectFoodList}">
+                    Список еды
+                </Button>
+                <Button
                     Command="{Binding SelectDayFrame}"
                     >История</Button>
             </StackPanel>
