@@ -22,9 +22,15 @@ namespace pfcManager.FoodList
             this.Kkal = food.Kkal;
             this.Description = food.Description;
             this.Carbohydrates = food.Carbohydrates;
+            if (Carbohydrates == null)
+                Carbohydrates = 0;
             this.Eating = food.Eating;
             this.Fats = food.Fats;
+            if (Fats == null)
+                Fats = 0;
             this.Protein = food.Protein;
+            if(Protein == null)
+                Protein = 0;
         }
     }
 }

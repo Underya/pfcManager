@@ -32,6 +32,7 @@ namespace pfcManager.FoodList
             {
                 sortText = value;
                 OnPropertyChanged("SortText");
+                OnPropertyChanged("Foods");
             }
         }
 
@@ -45,7 +46,8 @@ namespace pfcManager.FoodList
                 //Получение всей еды, подходящей под описание
                 using(ModelContext mc = new ModelContext())
                 {
-                    List<Food> foods = mc.Food.Where(obj => obj.Name.ToLower().Contains(sortText.ToLower())).ToList();
+                    List<Food> foods = mc.Food.Where(obj => obj.Name.ToLower().Contains(sortText.ToLower())).
+                        OrderBy(o => o.Name).ToList();
                     //Перевод в другой массив и обёртка в производный класс
                     foreach(Food food in foods)
                     {
