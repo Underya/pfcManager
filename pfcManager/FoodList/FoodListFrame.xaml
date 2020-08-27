@@ -5,10 +5,61 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:pfcManager.FoodList"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White">
+    <!-- Основное меню объекта -->
     <Grid>
-        <Label
-            FontSize="40"
-            Content="FoodListFrame"/>
+        <Grid.RowDefinitions>
+            <!--Строка с таблицей еды-->
+            <RowDefinition Height="0.7*"/>
+            <!-- Строка с функций добавления новой еды-->
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+            
+        <!--Таблица со всей едой-->
+        <Border
+            Grid.Row="0"
+            BorderBrush="Black"
+            BorderThickness="3">
+            <StackPanel
+                Orientation="Vertical"
+                >
+                
+                <!-- Окно ввода для фильтрации -->
+                <Label
+                    Margin="15, 0, 15, 0"
+                    FontSize="16">
+                    Название блюда
+                </Label>
+                <TextBox
+                    Text="{Binding SortText}"
+                    Margin="15, 0, 15, 0"
+                    FontSize="16"
+                    />
+                
+                <!-- Лист с едой -->
+                <ListBox
+                    Margin="15, 15, 15, 15">
+                    <ListBoxItem>
+                        <TextBlock>Текст</TextBlock>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock>Текст</TextBlock>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock>Текст</TextBlock>
+                    </ListBoxItem>
+                </ListBox>
+
+            </StackPanel>
+        </Border>
+
+        <!-- Таблица для добавления еды-->
+        <StackPanel
+            Grid.Row="1"
+            >
+            <Label>Название</Label>
+            <TextBox></TextBox>
+        </StackPanel>
     </Grid>
 </UserControl>
