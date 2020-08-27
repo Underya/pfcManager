@@ -60,5 +60,13 @@ namespace pfcManager
         {
             mainWindow.Content = new MainMenu();
         }
+
+        /// <summary>
+        /// Переход в меню со списком возможной еды
+        /// </summary>
+        static public void GoFoodListMenu()
+        {
+
+        }
     }
 }
