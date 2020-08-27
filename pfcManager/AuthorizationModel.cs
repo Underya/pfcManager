@@ -22,6 +22,39 @@ namespace pfcManager
 
         public string Login { set; get; }
 
+        /// <summary>
+        /// Сохранение информации о том, надо ли запоминать пользователя
+        /// </summary>
+        public bool SaveUser { get; set; }
+
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
+        public AuthorizationModel()
+        {
+            SaveUser = true;
+        }
+
+        /// <summary>
+        /// Пароль пользователя
+        /// </summary>
+        string password = "";
+
+        /// <summary>
+        /// Указание, что произошла загрузка окна приложения
+        /// </summary>
+        public void Load()
+        {
+            //Попытка получить информацию о логине и пароле
+            if (Settings1.Default.UserLogin == string.Empty)
+                return;
+            if (Settings1.Default.PasswordUser == string.Empty)
+                return;
+
+            //Непосредственно авторизация
+            Authorization(Settings1.Default.UserLogin, Settings1.Default.PasswordUser);
+        }
+
         public AuthorizationCommand AuthorizationCommands
         {
             get
@@ -38,15 +71,54 @@ namespace pfcManager
         void ExecuteAuthorizateCommand(object obj)
         {
             PasswordBox passwordBox = obj as PasswordBox;
-            if (Login == "" || passwordBox.Password == "" || !UserSave.CheckUser(Login, passwordBox.Password))
+            Authorization(Login, passwordBox.Password);   
+        }
+
+        /// <summary>
+        /// Команда авторизации
+        /// </summary>
+        /// <param name="Login"></param>
+        /// <param name="password"></param>
+        void Authorization(string Login, string password)
+        {
+            if (Login == "" || password == "" || !UserSave.CheckUser(Login, password))
             {
                 ErrorText = "Не удалось авторизироваться с указанным логиным и паролем";
                 OnPropertyChanged("ErrorText");
                 return;
             }
 
+            this.password = password;
+
+            //Если необходимо, то сохраняется логин и пароль
+            if (SaveUser)
+                SaveLoginPassword();
+            //В противном случае - наборот очищаются настройки
+            else
+                ClearSetting();
+
             PanelManager.CurrentUser = UserSave.GetUser(Login);
             PanelManager.GoMainMenu();
+        }
+
+       /// <summary>
+       /// Сохранение лоигна и пароля в настройках, если флаг указан
+       /// </summary>
+        void SaveLoginPassword()
+        {
+            Settings1.Default.UserLogin = Login;
+            Settings1.Default.PasswordUser = password;
+            Settings1.Default.Save();
+        }
+
+        /// <summary>
+        /// Очищение сохранений
+        /// </summary>
+        void ClearSetting()
+        {
+            Settings1.Default.UserLogin = string.Empty;
+            Settings1.Default.PasswordUser = string.Empty;
+            Settings1.Default.Save();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
