@@ -328,8 +328,9 @@ namespace pfcManager.FirstPage
             }
 
             EatingUpdate eatingUpdate = new EatingUpdate(eating);
-            OnPropertyChanged("Foods");
             OnPropertyChanged("CurrentCall");
+            OnPropertyChanged("Foods");
+            OnPropertyChanged("Eatings");
         }
 
         /// <summary>
