@@ -28,9 +28,9 @@
             BorderBrush="Black"
             BorderThickness="3">
             <StackPanel
+                HorizontalAlignment="Center"
                 Orientation="Vertical"
                 >
-                
                 <!-- Окно ввода для фильтрации -->
                 <Label
                     Margin="15, 0, 15, 0"
@@ -44,17 +44,19 @@
                     />
                 
                 <!-- Лист с едой -->
-                <ListView
-                    ItemsSource="{Binding Foods}"
+                <ListBox
+                    ItemsSource="{Binding Foods, UpdateSourceTrigger=PropertyChanged}"
                     Margin="15, 15, 15, 15"
                     SelectionMode="Single"
+                    MaxHeight="210"
+                    MaxWidth="500"
                     ScrollViewer.VerticalScrollBarVisibility="Visible"
                     >
-                    <ListView.ItemTemplate>
+                    <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel
                                 Orientation="Horizontal"
-                                MaxHeight="350"
+                                MinWidth="500"
                                 >
                                 
                                 <!--Название пищи-->
@@ -134,10 +136,10 @@
 
                             </StackPanel>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
+            
         </Border>
 
         <!-- Таблица для добавления еды-->

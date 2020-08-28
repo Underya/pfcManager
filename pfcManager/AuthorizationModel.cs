@@ -112,6 +112,10 @@ namespace pfcManager
        /// </summary>
         void SaveLoginPassword()
         {
+            //Если произошёл автозаход, то не надо сохранять параметр
+            if (Login == string.Empty || password == string.Empty)
+                return;
+
             Settings1.Default.UserLogin = Login;
             Settings1.Default.PasswordUser = password;
             Settings1.Default.Save();
