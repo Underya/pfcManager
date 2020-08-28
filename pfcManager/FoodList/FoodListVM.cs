@@ -39,6 +39,42 @@ namespace pfcManager.FoodList
         }
 
         /// <summary>
+        /// Комманда для удаления еды
+        /// </summary>
+        AcceptCommand deleteFood = null;
+
+        /// <summary>
+        /// Комманда для Удаления еды 
+        /// </summary>
+        public AcceptCommand DeleteFood
+        {
+            get
+            {
+                return deleteFood ??
+                    (deleteFood = new AcceptCommand(obj =>
+                    {
+                        if(SelectFood==null)
+                        {
+                            MessageBox.Show("Не выбрана еда, которую надо удалить");
+                            return;
+                        }
+
+                        using(ModelContext mc = new ModelContext())
+                        {
+                            mc.Food.Remove(SelectFood);
+                            mc.SaveChanges();
+                        }
+
+                        OnPropertyChanged("Foods");
+                    }));
+            }
+            set
+            {
+
+            }
+        }
+
+        /// <summary>
         /// Переменная для хранения названия нового блюда
         /// </summary>
         string footName = "";
