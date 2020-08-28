@@ -44,6 +44,11 @@ namespace pfcManager.FoodList
         string footName = "";
 
         /// <summary>
+        /// Выбранная пользователем еда из списка еды
+        /// </summary>
+        public FoodUpd SelectFood { get; set; }
+
+        /// <summary>
         /// Название нового блюда
         /// </summary>
         public string FootName 
