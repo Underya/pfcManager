@@ -39,5 +39,17 @@ namespace pfcManager.DayStatist
                 weightsCollection = value;
             }
         }
+
+        public ObservableCollection<SumKkal> Kkals
+        {
+            get
+            {
+                return new ObservableCollection<SumKkal>(SumKkal.CallBackDay(30, PanelManager.CurrentUserId));
+            }
+            set
+            {
+
+            }
+        }
     }
 }
