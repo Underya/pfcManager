@@ -49,7 +49,22 @@ namespace pfcManager.DayStatist
         /// </summary>
         public double MeanKkal 
         {
-            get { return 4.0; }
+            get 
+            {
+                //Получение всей суммы калорий
+                ObservableCollection<SumKkal> kkals = Kkals;
+
+                double summ = 0;
+                int count = 0;
+
+                foreach(SumKkal sumKkal in kkals)
+                {
+                    summ += sumKkal.Summ;
+                    count++;
+                }
+
+                return Math.Round( summ / count, 2); 
+            }
             set { }
         }
 
@@ -74,13 +89,22 @@ namespace pfcManager.DayStatist
         }
 
         /// <summary>
+        /// Переменная для хранения суммы калорий
+        /// </summary>
+        ObservableCollection<SumKkal> kkals = null;
+
+        /// <summary>
         /// Статистика калорий за последни 30 дней
         /// </summary>
         public ObservableCollection<SumKkal> Kkals
         {
             get
             {
-                return new ObservableCollection<SumKkal>(SumKkal.CallBackDay(30, PanelManager.CurrentUserId));
+                if (kkals != null)
+                    return kkals;
+                kkals = new ObservableCollection<SumKkal>(SumKkal.CallBackDay(30, PanelManager.CurrentUserId));
+
+                return kkals;
             }
             set
             {
