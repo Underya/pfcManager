@@ -89,7 +89,7 @@ namespace pfcManager
                 foreach(Eating eating in summ)
                 {
                     EatingUpdate eatingUpdate = new EatingUpdate(eating);
-                    summKKal += eatingUpdate.FoodKkal;
+                    summKKal += eatingUpdate.GetResultKkal;
                 }
             }
 
@@ -103,18 +103,19 @@ namespace pfcManager
         /// <returns></returns>
         public static Collection<SumKkal> CallBackDay(int countDay, long userId)
         {
-            DateTime curr = DateTime.Now.AddDays(-countDay);
+            DateTime curr = DateTime.Now;
 
             Collection<SumKkal> sums = new Collection<SumKkal>();
 
             for(int i = 0; i < countDay; i++)
             {
-                //Переход к следующему дню
-                curr = curr.AddDays(1);
                 SumKkal sumKkal = new SumKkal(curr, userId);
                 //Дни, о которых нет информации не учитываются
                 if(sumKkal.Summ != 0)
                     sums.Add(sumKkal);
+
+                //Переход к следующему дню
+                curr = curr.AddDays(-1);
             }
 
             return sums;

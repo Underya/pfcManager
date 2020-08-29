@@ -40,11 +40,14 @@ namespace pfcManager.DayStatist
             }
         }
 
+        /// <summary>
+        /// Статистика калорий за последни 30 дней
+        /// </summary>
         public ObservableCollection<SumKkal> Kkals
         {
             get
             {
-                return new ObservableCollection<SumKkal>(SumKkal.CallBackDay(2, PanelManager.CurrentUserId));
+                return new ObservableCollection<SumKkal>(SumKkal.CallBackDay(30, PanelManager.CurrentUserId));
             }
             set
             {
