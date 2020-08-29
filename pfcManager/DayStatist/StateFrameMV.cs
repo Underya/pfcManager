@@ -44,6 +44,14 @@ namespace pfcManager.DayStatist
             set { }
         }
 
+        /// <summary>
+        /// Среднее число ккалорий
+        /// </summary>
+        public double MeanKkal 
+        {
+            get { return 4.0; }
+            set { }
+        }
 
         /// <summary>
         /// Получение коллекции информации о весе
