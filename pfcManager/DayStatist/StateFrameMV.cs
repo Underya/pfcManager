@@ -22,11 +22,28 @@ namespace pfcManager.DayStatist
         /// <summary>
         /// Потерянный вес за указанный промежуток
         /// </summary>
-        public float LostWeigt 
+        public double LostWeigt 
         { 
-            get { return -4.0F; } 
+            get 
+            {
+                //Получение всех весов из статисики
+                ObservableCollection<Weight> weights = Weights;
+
+                //Если нет значений, то ничего и не потеряно
+                if (weights.Count == 0) 
+                    return 0;
+
+                //Ближайший день
+                Weight CurrDay = weights[0];
+                //Самый удалённый
+                Weight LastDay = weights[weights.Count - 1];
+
+                //Возвращение разницы
+                return Math.Round((double)(LastDay.Value - CurrDay.Value), 2);
+            } 
             set { }
         }
+
 
         /// <summary>
         /// Получение коллекции информации о весе
@@ -35,7 +52,12 @@ namespace pfcManager.DayStatist
         {
             get
             {
-                return new ObservableCollection<Weight>(WeightStatic.GetWeights(PanelManager.CurrentUserId, 30));
+                if (weightsCollection != null)
+                    return weightsCollection;
+
+                weightsCollection = new ObservableCollection<Weight>(WeightStatic.GetWeights(PanelManager.CurrentUserId, 30));
+
+                return weightsCollection;
             }
             set
             {
