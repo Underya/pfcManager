@@ -21,6 +21,7 @@ namespace pfcManager.DayStatist
         public DayStateFrame()
         {
             InitializeComponent();
+            DataContext = new StateFrameMV();
         }
     }
 }
