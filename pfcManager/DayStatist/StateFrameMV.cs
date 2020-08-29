@@ -44,7 +44,7 @@ namespace pfcManager.DayStatist
         {
             get
             {
-                return new ObservableCollection<SumKkal>(SumKkal.CallBackDay(30, PanelManager.CurrentUserId));
+                return new ObservableCollection<SumKkal>(SumKkal.CallBackDay(2, PanelManager.CurrentUserId));
             }
             set
             {

@@ -5,8 +5,9 @@ using System.Text;
 using pfcManager.Model;
 using pfcManager.FirstPage;
 using System.Collections.ObjectModel;
+using System.Threading;
 
-namespace pfcManager.DayStatist
+namespace pfcManager
 {
     class SumKkal
     {
@@ -83,7 +84,7 @@ namespace pfcManager.DayStatist
 
             using(ModelContext mc = new ModelContext())
             {
-                var summ = mc.Eating.Where(o => o.Datatime >= startDay || o.Datatime <= endDay || o.Idusers == userId);
+                var summ = mc.Eating.Where(o => o.Datatime >= startDay && o.Datatime <= endDay && o.Idusers == userId);
 
                 foreach(Eating eating in summ)
                 {
@@ -102,17 +103,22 @@ namespace pfcManager.DayStatist
         /// <returns></returns>
         public static Collection<SumKkal> CallBackDay(int countDay, long userId)
         {
-            DateTime curr = DateTime.Now;
+            DateTime curr = DateTime.Now.AddDays(-countDay);
 
             Collection<SumKkal> sums = new Collection<SumKkal>();
 
             for(int i = 0; i < countDay; i++)
             {
-                DateTime currSumm = new DateTime( curr.Subtract(new DateTime(0, 0, countDay - i, 0, 0, 0, 0)).Ticks);
-                sums.Add(new SumKkal(currSumm, userId));
+                //Переход к следующему дню
+                curr = curr.AddDays(1);
+                SumKkal sumKkal = new SumKkal(curr, userId);
+                //Дни, о которых нет информации не учитываются
+                if(sumKkal.Summ != 0)
+                    sums.Add(sumKkal);
             }
 
             return sums;
         }
+
     }
 }

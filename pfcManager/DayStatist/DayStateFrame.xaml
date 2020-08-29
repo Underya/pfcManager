@@ -72,7 +72,7 @@
             История калорий
         </Label>
 
-        <!--Содержимое статистики веса-->
+        <!--Содержимое статистики калорий-->
         <Border
             Grid.Column="1"
             Grid.Row="1"
@@ -80,7 +80,7 @@
              Margin="10"
             >
             <ListView
-                ItemsSource="{Binding Weights}"
+                ItemsSource="{Binding Kkals}"
                >
                 <ListView.ItemTemplate>
                     <DataTemplate>
