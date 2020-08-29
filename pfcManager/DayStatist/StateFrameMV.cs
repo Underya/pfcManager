@@ -20,6 +20,15 @@ namespace pfcManager.DayStatist
         ObservableCollection<Weight> weightsCollection = null;
 
         /// <summary>
+        /// Потерянный вес за указанный промежуток
+        /// </summary>
+        public float LostWeigt 
+        { 
+            get { return -4.0F; } 
+            set { }
+        }
+
+        /// <summary>
         /// Получение коллекции информации о весе
         /// </summary>
         public ObservableCollection<Weight> Weights
