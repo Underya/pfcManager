@@ -26,13 +26,7 @@ namespace pfcManager.DayStatist
         {
             get
             {
-                List<Weight> weightsList = null;
-                using(ModelContext mc = new ModelContext())
-                {
-                    weightsList = mc.Weight.Where(o => o.Idusers == PanelManager.CurrentUserId).OrderByDescending(o => o.Datatime).ToList();
-                }
-                weightsCollection = new ObservableCollection<Weight>(weightsList);
-                return weightsCollection;
+                return new ObservableCollection<Weight>(WeightStatic.GetWeights(PanelManager.CurrentUserId, 30));
             }
             set
             {
