@@ -233,7 +233,11 @@
                     ItemsSource="{Binding Foods}"
                     FontSize="20"
                     DockPanel.Dock="Top"
-                    SelectedItem="{Binding SelectedFood, Mode=TwoWay, TargetNullValue=- }"
+                    SelectedItem="{Binding SelectedFood, Mode=TwoWay}"
+                    StaysOpenOnEdit="True"
+                    IsEditable="True"
+                    IsTextSearchEnabled="True"
+                    TextSearch.TextPath="Name"  
                     >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -248,7 +252,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-
+                
                 <!--Ккил и указание веса -->
                 <Grid
                     Margin="3"
