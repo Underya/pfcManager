@@ -76,6 +76,8 @@ namespace pfcManager
         /// <param name="obj"></param>
         void ExecuteAuthorizateCommand(object obj)
         {
+            //Указание пользователю
+            ErrorText = "Авторизация...";
             PasswordBox passwordBox = obj as PasswordBox;
             Authorization(Login, passwordBox.Password);   
         }

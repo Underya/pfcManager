@@ -35,5 +35,19 @@ namespace pfcManager
             //Передача информации о событии загрузки
             ((AuthorizationModel)(DataContext)).Load();
         }
+
+        /// <summary>
+        /// Обработка нажития клавиш
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            //При нажатии на клавишу Enter - попытка авторизации
+            if(e.Key == Key.Enter)
+            {
+                ((AuthorizationModel)DataContext).AuthorizationCommands.Execute(PasswordBox);
+            }
+        }
     }
 }
