@@ -14,6 +14,35 @@ namespace pfcManager.DayStatist
     class StateFrameMV : 
         PropertyChanges
     {
+
+        /// <summary>
+        /// Выбранная количество дней
+        /// </summary>
+        public CountDaysStatic SelectDay
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Возможные варианты выбора статистики по периоду, за который можно выбрать
+        /// </summary>
+        public ObservableCollection<CountDaysStatic> CountDays
+        {
+            get; set;
+        }
+
+        public StateFrameMV()
+        {
+            ObservableCollection<CountDaysStatic> countDaysStatics = new ObservableCollection<CountDaysStatic>();
+            countDaysStatics.Add(new CountDaysStatic() { DayCount = 7, Name = "Неделя" });
+            countDaysStatics.Add(new CountDaysStatic() { DayCount = 14, Name = "Две недели" });
+            countDaysStatics.Add(new CountDaysStatic() { DayCount = 31, Name = "Месяц" });
+            countDaysStatics.Add(new CountDaysStatic() { DayCount = 62, Name = "Два месяца" });
+            countDaysStatics.Add(new CountDaysStatic() { DayCount = 186 * 6, Name = "Пол года" });
+            CountDays = countDaysStatics;
+            SelectDay = CountDays[0];
+        }
+
         /// <summary>
         /// Коллекция информации о весе
         /// </summary>
