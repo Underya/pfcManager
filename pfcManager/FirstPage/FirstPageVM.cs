@@ -347,5 +347,15 @@ namespace pfcManager.FirstPage
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
+        /// <summary>
+        /// Рекомендумое количество калорий
+        /// </summary>
+        /// <returns></returns>
+        public double RecKcal
+        {
+            get { return 2500.0; }
+            set { }
+        }
     }
 }

@@ -47,26 +47,56 @@
                 />
         </StackPanel>
         
-        <!-- Текущий вес-->
-        <StackPanel
+        <!-- Текущий вес и максимум калорий-->
+        <Grid
             Grid.Row="0"
             Grid.Column="2">
-            <Label 
-                DockPanel.Dock="Top"
-                HorizontalAlignment="Center"
-                FontSize="16"
-                Margin="1">Текуший вес</Label>
-            <TextBox
-                DockPanel.Dock="Top"
-                Margin="20, 0, 20, 0"
-                IsReadOnly="False"
-                MinHeight="30"
-                FontSize="16"
-                TextAlignment="Center"
-                Text="{Binding CurrentWeight}"
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Максимум калорий-->
+            <StackPanel 
+                Grid.Column="0"
+                >
+                <Label 
+                    HorizontalAlignment="Center"
+                    FontSize="16"
+                    Margin="1">Максиму калорий</Label>
+                <TextBox
+                    Margin="20, 0, 20, 0"
+                    IsReadOnly="True"
+                    MinHeight="30"
+                    FontSize="16"
+                    Background="#DEDEDE"
+                    TextAlignment="Center"
+                    Text="{Binding RecKcal}"
+                />
+            </StackPanel>
+            
+            <!-- Текущий вес-->
+            <StackPanel
+                    Grid.Row="0"
+                    Grid.Column="1">
+                <Label 
+                    DockPanel.Dock="Top"
+                    HorizontalAlignment="Center"
+                    FontSize="16"
+                    Margin="1">Текуший вес</Label>
+                <TextBox
+                    DockPanel.Dock="Top"
+                    Margin="20, 0, 20, 0"
+                    IsReadOnly="False"
+                    MinHeight="30"
+                    FontSize="16"
+                    TextAlignment="Center"
+                    Text="{Binding CurrentWeight}"
                 />
             
         </StackPanel>
+        </Grid>
 
         <!-- Панель, которая показывает еду за текущий день-->
         <Border
