@@ -92,6 +92,23 @@ namespace pfcManager.Model
         }
 
         /// <summary>
+        /// Возвращение количества лет пользователя
+        /// </summary>
+        public int YearsOld
+        {
+            get
+            {
+                //Если нет указан возвраст, то считается средний по умолчанию
+                if (Datebridh == null)
+                    return 25;
+
+                //Расчёт количества лет
+                DateTime now = DateTime.Now;
+                return now.Year - Datebridh.Value.Year;
+            }
+        }
+
+        /// <summary>
         /// Получение по открытому параметру хешу и соли
         /// </summary>
         /// <param name="OpenPassword">Открытый пароль</param>
