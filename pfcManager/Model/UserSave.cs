@@ -37,8 +37,10 @@ namespace pfcManager.Model
         void SetInfoUser(Users user)
         {
             this.Firstname = user.Firstname;
+            this.Datebridh = user.Datebridh;
             this.Lastname = user.Lastname;
             this.Midname = user.Midname;
+            this.Height = user.Height;
             this.Salt = user.Salt;
             this.Hash = user.Hash;
             this.Sex = user.Sex;
