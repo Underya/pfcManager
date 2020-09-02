@@ -33,8 +33,18 @@ namespace pfcManager.FirstPage
         {
             if(e.Key == Key.Enter)
             {
+                //Получение веса
+                float weight = -1;
+                string text = InputWeight.Text;
+
+                if(float.TryParse(text, out weight))
+                {
+                    ((FirstPageVM)DataContext).EatingWeight = weight;
+                }
+
                 ((FirstPageVM)DataContext).SaveCommand.Execute(null);
             }
         }
+
     }
 }
