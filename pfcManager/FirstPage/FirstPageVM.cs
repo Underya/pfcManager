@@ -354,7 +354,11 @@ namespace pfcManager.FirstPage
         /// <returns></returns>
         public double RecKcal
         {
-            get { return 2500.0; }
+            get 
+            {
+                CaloriesCalc caloriesCalc = new CaloriesCalc(PanelManager.CurrentUser);
+                return Math.Round( caloriesCalc.GetSmallCalories(), 0);
+            }
             set { }
         }
     }

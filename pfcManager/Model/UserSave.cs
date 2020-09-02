@@ -29,7 +29,6 @@ namespace pfcManager.Model
             SetInfoUser(user);
         }
 
-
         /// <summary>
         /// Получение информации из базового объекта
         /// </summary>

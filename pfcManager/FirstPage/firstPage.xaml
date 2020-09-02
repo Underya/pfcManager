@@ -95,7 +95,8 @@
                     Text="{Binding CurrentWeight}"
                 />
             
-        </StackPanel>
+            </StackPanel>
+            
         </Grid>
 
         <!-- Панель, которая показывает еду за текущий день-->
