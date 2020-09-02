@@ -16,11 +16,27 @@ namespace pfcManager.DayStatist
     {
 
         /// <summary>
+        /// Переменная для хранения выбранного дня
+        /// </summary>
+        CountDaysStatic selectDay = null;
+
+        /// <summary>
         /// Выбранная количество дней
         /// </summary>
         public CountDaysStatic SelectDay
         {
-            get; set;
+            get
+            {
+                return selectDay;
+            }
+            set
+            {
+                selectDay = value;
+                OnPropertyChanged("Weights");
+                OnPropertyChanged("Kkals");
+                OnPropertyChanged("LostWeigt");
+                OnPropertyChanged("MeanKkal");
+            }
         }
 
         /// <summary>
@@ -104,10 +120,7 @@ namespace pfcManager.DayStatist
         {
             get
             {
-                if (weightsCollection != null)
-                    return weightsCollection;
-
-                weightsCollection = new ObservableCollection<Weight>(WeightStatic.GetWeights(PanelManager.CurrentUserId, 30));
+                weightsCollection = new ObservableCollection<Weight>(WeightStatic.GetWeights(PanelManager.CurrentUserId, SelectDay.DayCount));
 
                 return weightsCollection;
             }
@@ -129,9 +142,7 @@ namespace pfcManager.DayStatist
         {
             get
             {
-                if (kkals != null)
-                    return kkals;
-                kkals = new ObservableCollection<SumKkal>(SumKkal.CallBackDay(30, PanelManager.CurrentUserId));
+                kkals = new ObservableCollection<SumKkal>(SumKkal.CallBackDay(SelectDay.DayCount, PanelManager.CurrentUserId));
 
                 return kkals;
             }
