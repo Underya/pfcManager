@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using System;
 
 namespace pfcManager.Model
 {
@@ -186,6 +185,12 @@ namespace pfcManager.Model
                     .IsRequired()
                     .HasColumnName("salt")
                     .HasMaxLength(40);
+
+                entity.Property(e => e.Datebridh)
+                    .HasColumnName("datebridh");
+
+                entity.Property(e => e.Height)
+                    .HasColumnName("height");
 
                 entity.Property(e => e.Sex).HasColumnName("sex");
             });

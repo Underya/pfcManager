@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace pfcManager.Model
 {
-    public partial class Users 
+    public partial class Users
     {
         public Users()
         {
@@ -21,6 +21,14 @@ namespace pfcManager.Model
         public string Lastname { get; set; }
         public string Midname { get; set; }
         public char? Sex { get; set; }
+        /// <summary>
+        /// Дата рождения пользователя
+        /// </summary>
+        public DateTime? Datebridh { get; set;}
+        /// <summary>
+        /// Рост пользователя
+        /// </summary>
+        public float? Height { get; set; }
 
         public virtual ICollection<Eating> Eating { get; set; }
         public virtual ICollection<Sports> Sports { get; set; }
