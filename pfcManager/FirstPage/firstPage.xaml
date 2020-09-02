@@ -72,7 +72,7 @@
                     FontSize="16"
                     Background="#DEDEDE"
                     TextAlignment="Center"
-                    Text="{Binding RecKcal}"
+                    Text="{Binding RecommendKcal}"
                 />
             </StackPanel>
             

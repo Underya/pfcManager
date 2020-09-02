@@ -352,7 +352,7 @@ namespace pfcManager.FirstPage
         /// Рекомендумое количество калорий
         /// </summary>
         /// <returns></returns>
-        public double RecKcal
+        public double RecommendKcal
         {
             get 
             {
