@@ -15,7 +15,9 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid
+        Keyboard.KeyDown="Grid_KeyDown"
+        >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.6*"/>

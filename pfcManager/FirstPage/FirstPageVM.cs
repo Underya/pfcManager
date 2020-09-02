@@ -88,8 +88,10 @@ namespace pfcManager.FirstPage
                 {
                     try
                     {
-                        AddNewEating();
-                        ClearDate();
+                        //Если была успешно добавлена деа
+                        if( AddNewEating() == 1)
+                            //Очищается меню ввода
+                            ClearDate();
                     } catch(Exception exc)
                     {
                         MessageBox.Show(exc.Message, "Ошибка!");
@@ -301,18 +303,18 @@ namespace pfcManager.FirstPage
         /// <summary>
         /// Добавление нового блюда
         /// </summary>
-        void AddNewEating()
+        int AddNewEating()
         {
             if(SelectedFood == null || SelectedFood.Id == 0)
             {
                 MessageBox.Show("Не выбрано блюдо");
-                return;
+                return 0;
             }
                 
             if(EatingWeight == 0.0) 
             {
                 MessageBox.Show("Не указан вес блюда");
-                return;
+                return 0;
             }
 
             Eating eating = new Eating();
@@ -331,6 +333,7 @@ namespace pfcManager.FirstPage
             OnPropertyChanged("CurrentCall");
             OnPropertyChanged("Foods");
             OnPropertyChanged("Eatings");
+            return 1;
         }
 
         /// <summary>

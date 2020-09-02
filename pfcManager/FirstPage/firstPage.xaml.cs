@@ -24,6 +24,17 @@ namespace pfcManager.FirstPage
             DataContext = new FirstPageVM();
         }
 
-
+        /// <summary>
+        /// Обработка нажатия клавиш 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                ((FirstPageVM)DataContext).SaveCommand.Execute(null);
+            }
+        }
     }
 }
