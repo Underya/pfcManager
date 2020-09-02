@@ -14,9 +14,9 @@
             <Setter Property="Margin" Value="3, 0, 3, 0"/>
         </Style>
     </UserControl.Resources>
-    
+
     <Grid>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.6*"/>
             <ColumnDefinition Width="1*"
@@ -27,18 +27,19 @@
             <RowDefinition Height="0.15*"/>
             <RowDefinition Height="0.8*"/>
         </Grid.RowDefinitions>
-        
+
         <!--Показ количества колорий за сегодняшний день-->
         <StackPanel>
             <Label 
                 DockPanel.Dock="Top"
                 HorizontalAlignment="Center"
                 FontSize="16"
-                Margin="1"> Сумма калорий</Label>
+                Margin="1">Сумма калорий</Label>
             <TextBox
                 DockPanel.Dock="Top"
                 Margin="20, 0, 20, 0"
                 IsReadOnly="True"
+                IsTabStop="False"
                 MinHeight="30"
                 FontSize="15"
                 Background="#DEDEDE"
@@ -46,7 +47,7 @@
                 Text="{Binding CurrentCall}"
                 />
         </StackPanel>
-        
+
         <!-- Текущий вес и максимум калорий-->
         <Grid
             Grid.Row="0"
@@ -68,6 +69,7 @@
                 <TextBox
                     Margin="20, 0, 20, 0"
                     IsReadOnly="True"
+                    IsTabStop="False"
                     MinHeight="30"
                     FontSize="16"
                     Background="#DEDEDE"
@@ -75,7 +77,7 @@
                     Text="{Binding RecommendKcal}"
                 />
             </StackPanel>
-            
+
             <!-- Текущий вес-->
             <StackPanel
                     Grid.Row="0"
@@ -94,9 +96,9 @@
                     TextAlignment="Center"
                     Text="{Binding CurrentWeight}"
                 />
-            
+
             </StackPanel>
-            
+
         </Grid>
 
         <!-- Панель, которая показывает еду за текущий день-->
@@ -120,7 +122,7 @@
                             BorderBrush="Black"
                             BorderThickness="2"
                             >
-                        <Grid
+                            <Grid
                             Margin="5"
                             Width="340"
                             >
@@ -161,15 +163,15 @@
                                     HorizontalAlignment="Left"
                                     Grid.Column="2"
                                     Orientation="Horizontal">
-                                    
-                                <TextBox 
+
+                                    <TextBox 
                                     DockPanel.Dock="Top"
                                     FontSize="12" 
                                     Margin="4, 0, 0, 0"
                                     BorderThickness="0"
                                     Text="{Binding Path=WeightUpd}"/>
-                                    
-                                <TextBlock
+
+                                    <TextBlock
                                     DockPanel.Dock="Top"
                                     Margin="0, 0, 0, 4"
                                     FontSize="12"
@@ -181,34 +183,34 @@
                                     HorizontalAlignment="Left"
                                     Grid.Column="3"
                                     Orientation="Horizontal">
-                                <TextBlock 
+                                    <TextBlock 
                                     DockPanel.Dock="Right"
                                     FontSize="12" 
                                     Margin="4, 0, 1, 0"
                                     Text="{Binding Path=GetResultKkal}"/>
-                                <TextBlock
+                                    <TextBlock
                                     DockPanel.Dock="Right"
                                     Margin="0, 0, 0, 4"
                                     FontSize="12"
                                     Text="Ккал"/>
                                 </StackPanel>
-                            
-                            <!--Кнопка удаления-->
-                            <Button
+
+                                <!--Кнопка удаления-->
+                                <Button
                                 FontSize="10"
                                 Grid.Column="5"
                                 DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},  Path=DataContext}"
                                 Command="{Binding DeleteEatingCommand}"
                                 CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=SelectedItem}"
                                 Content="Удалить"/>
-                            
-                        </Grid>
+
+                            </Grid>
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
-        
+
         <!-- Выбор еды и указание её веса-->
         <Border
             Grid.Row="1"
@@ -220,7 +222,7 @@
             <DockPanel
                 LastChildFill="False"
                 Margin="5">
-                
+
                 <!-- Выбор блюда -->
                 <Label
                 Margin="5, 40, 5, 5"
@@ -237,7 +239,7 @@
                     StaysOpenOnEdit="True"
                     IsEditable="True"
                     IsTextSearchEnabled="True"
-                    TextSearch.TextPath="Name"  
+                    TextSearch.TextPath="Name"
                     >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -252,61 +254,57 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                
+
                 <!--Ккил и указание веса -->
                 <Grid
                     Margin="3"
                     DockPanel.Dock="Top">
-                    
+
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="136*"/>
+                        <ColumnDefinition Width="21*"/>
+                        <ColumnDefinition Width="115*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    
-                    
+
+
                     <!-- ККал-->
                     <Label 
                         Grid.Row="0"
-                        Grid.Column="0"
                         HorizontalAlignment="Center"
-                        FontSize="20"
-                        DockPanel.Dock="Top">
+                        FontSize="20" Margin="0,0,0,30" Grid.RowSpan="2">
                         Ккал
                     </Label>
                     <TextBox
-                        Margin="1"
+                        Margin="1,1,1,1"
                         Grid.Row="1"
+                        IsTabStop="False"
                         FontSize="20"
                         IsReadOnly="True"
-                        DockPanel.Dock="Top"
                         Background="#DEDEDE"
                         DataContext="{Binding SelectedFood}"
                         Text="{Binding Path=Kkal}"
-                        >
-                    </TextBox>
-            
+                        />
+
                     <!--Вес блюда-->
                     <Label 
                         Grid.Row="0"
                         Grid.Column="1"
-                        HorizontalAlignment="Center"
-                        FontSize="20"
-                        DockPanel.Dock="Top"
+                        HorizontalAlignment="Left"
+                        FontSize="20" Grid.ColumnSpan="2" Margin="0,0,0,30" Grid.RowSpan="2"
                         >
                         Вес в граммах
                     </Label>
                     <TextBox 
+                        x:Name="InputWeight"
                         Grid.Row="1"
                         Grid.Column="1"
                         FontSize="20"
                         Margin="1,1,0,1"
-                        Text="{Binding EatingWeight}"
-                        DockPanel.Dock="Top">
-                    </TextBox>
+                        Text="{Binding EatingWeight}" Grid.ColumnSpan="2"/>
                 </Grid>
 
                 <!-- Общая калорийность-->
@@ -318,6 +316,7 @@
                     Content="Общая калорийность"
                     />
                 <TextBox
+                    IsTabStop="False"
                     FontSize="18"
                     Margin="40, 0, 40, 0"
                     DockPanel.Dock="Top"
@@ -333,11 +332,11 @@
                     FontSize="20"
                     Command="{Binding SaveCommand}"
                     >
-                    Добавить 
+                    Добавить
                 </Button>
-            
+
             </DockPanel>
         </Border>
-        
+
     </Grid>
 </UserControl>

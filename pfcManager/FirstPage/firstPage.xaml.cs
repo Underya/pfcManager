@@ -23,5 +23,7 @@ namespace pfcManager.FirstPage
             InitializeComponent();
             DataContext = new FirstPageVM();
         }
+
+
     }
 }
