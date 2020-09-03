@@ -48,5 +48,21 @@ namespace pfcManager.FirstPage
             }
         }
 
+        private void Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            object new_obj = sender;
+        }
+
+        /// <summary>
+        /// Поднимающиеся событие, вызваемое при нажатии мышки на кнопку удаления
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            //Выбор элемента, у которого нажата кнопка
+            if (sender is ListBoxItem)
+                ((ListBoxItem)sender).IsSelected = true;
+        }
     }
 }

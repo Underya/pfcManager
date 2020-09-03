@@ -116,7 +116,15 @@
                 x:Name="BoxTable"
                 HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding Eatings, UpdateSourceTrigger=PropertyChanged}"
-                >
+                MouseDown="Button_MouseLeftButtonUp"
+                GotMouseCapture="Button_MouseEnter">
+                <!--Добавления обработчика событий для элементов ListBox-->
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="GotMouseCapture" Handler="Button_MouseEnter"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border
@@ -200,7 +208,7 @@
                                     
                                     <TextBlock 
                                         DockPanel.Dock="Right"
-                                        FontSize="16"
+                                        FontSize="15"
                                         Foreground="Black"
                                         FontWeight="Black"
                                         VerticalAlignment="Center"
@@ -221,6 +229,7 @@
                                     FontSize="14"
                                     Grid.Column="5"
                                     Margin="0, 3, 6, 3"
+                                    GotMouseCapture="Button_MouseEnter"
                                     DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},  Path=DataContext}"
                                     Command="{Binding DeleteEatingCommand}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=SelectedItem}"
