@@ -112,21 +112,18 @@
             Margin="3"
             >
             <ListBox 
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="10, 10, 10, 10"
-            x:Name="BoxTable"
-            ItemsSource="{Binding Eatings, UpdateSourceTrigger=PropertyChanged}"
+                Margin="10, 10, 10, 10"
+                x:Name="BoxTable"
+                HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Eatings, UpdateSourceTrigger=PropertyChanged}"
                 >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border
                             BorderBrush="Black"
-                            BorderThickness="2"
-                            >
+                            BorderThickness="2" 
+                            > 
                             <Grid
-                            Margin="5"
-                            Width="340"
                             >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition
@@ -149,65 +146,88 @@
                                 <!-- Дата-->
                                 <TextBlock
                                     Grid.Column="0"
-                                    FontSize="12"
+                                    FontSize="15"
+                                    Margin="3, 0, 0, 0"
+                                    VerticalAlignment="Center"
                                     Text="{Binding StringFormat=\{0:HH:mm\}, Path=Datatime}"/>
 
                                 <!-- Название блюда-->
                                 <TextBlock 
-                                Grid.Column="1"
-                                DockPanel.Dock="Left"
-                                FontSize="12"
-                                Margin="4, 0, 4, 0"
-                                Text="{Binding Path=FoodName, UpdateSourceTrigger=PropertyChanged}"/>
+                                    Grid.Column="1"
+                                    DockPanel.Dock="Left"
+                                    FontSize="14"
+                                    VerticalAlignment="Center"
+                                    Margin="4, 0, 4, 0"
+                                    Text="{Binding Path=FoodName, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <!-- Вес блюда-->
                                 <StackPanel 
                                     HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
                                     Grid.Column="2"
                                     Orientation="Horizontal">
 
-                                    <TextBox 
-                                    DockPanel.Dock="Top"
-                                    FontSize="12" 
-                                    Margin="4, 0, 0, 0"
-                                    BorderThickness="0"
-                                    Text="{Binding Path=WeightUpd}"/>
+                                    <Border
+                                        BorderBrush="Gray"
+                                        BorderThickness="1"
+                                        Margin="0,0,3,0"
+                                        >
+                                        <TextBox 
+                                            DockPanel.Dock="Top"
+                                            FontSize="17" 
+                                            Margin="0, 0, 0, 0"
+                                            VerticalAlignment="Center"
+                                            BorderThickness="0"
+                                            Text="{Binding Path=WeightUpd}"/>
+                                        
+                                    </Border>
 
                                     <TextBlock
-                                    DockPanel.Dock="Top"
-                                    Margin="0, 0, 0, 4"
-                                    FontSize="12"
-                                    Text="Грамм"/>
+                                        DockPanel.Dock="Top"
+                                        Margin="0, 0, 0, 4"
+                                        VerticalAlignment="Center"
+                                        FontSize="15"
+                                        Text="Грамм"/>
+                                    
                                 </StackPanel>
 
                                 <!-- Суммарная калорийность-->
                                 <StackPanel 
                                     HorizontalAlignment="Left"
                                     Grid.Column="3"
+                                    VerticalAlignment="Center"
                                     Orientation="Horizontal">
+                                    
                                     <TextBlock 
-                                    DockPanel.Dock="Right"
-                                    FontSize="12" 
-                                    Margin="4, 0, 1, 0"
-                                    Text="{Binding Path=GetResultKkal}"/>
+                                        DockPanel.Dock="Right"
+                                        FontSize="16"
+                                        Foreground="Black"
+                                        FontWeight="Black"
+                                        VerticalAlignment="Center"
+                                        Margin="4, 0, 3, 0"
+                                        Text="{Binding Path=GetResultKkal}"/>
+                                    
                                     <TextBlock
-                                    DockPanel.Dock="Right"
-                                    Margin="0, 0, 0, 4"
-                                    FontSize="12"
-                                    Text="Ккал"/>
+                                        DockPanel.Dock="Right"
+                                        VerticalAlignment="Center"
+                                        Margin="0, 0, 0, 0"
+                                        FontSize="15"
+                                        Text="Ккал"/>
+                                    
                                 </StackPanel>
 
                                 <!--Кнопка удаления-->
                                 <Button
-                                FontSize="10"
-                                Grid.Column="5"
-                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},  Path=DataContext}"
-                                Command="{Binding DeleteEatingCommand}"
-                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=SelectedItem}"
-                                Content="Удалить"/>
+                                    FontSize="14"
+                                    Grid.Column="5"
+                                    Margin="0, 3, 6, 3"
+                                    DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},  Path=DataContext}"
+                                    Command="{Binding DeleteEatingCommand}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=SelectedItem}"
+                                    Content="Удалить"/>
 
                             </Grid>
-                        </Border>
+                        </Border> 
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

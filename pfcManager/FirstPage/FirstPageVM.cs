@@ -285,6 +285,8 @@ namespace pfcManager.FirstPage
                     mc.SaveChanges();
                 }
                 OnPropertyChanged("CurrentWeight");
+                //Также, при имзенении веса, может изменится рекомендуемое количество ккал
+                OnPropertyChanged("RecommendKcal");
             }
         }
 

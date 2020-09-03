@@ -36,9 +36,11 @@ namespace pfcManager.FirstPage
                 //Получение веса
                 float weight = -1;
                 string text = InputWeight.Text;
-
+                
+                //Если был введён вес, но фокус остался на нём же, то в модели свойство не обновится
                 if(float.TryParse(text, out weight))
                 {
+                    //Обновление свойства
                     ((FirstPageVM)DataContext).EatingWeight = weight;
                 }
 
