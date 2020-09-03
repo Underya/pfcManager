@@ -206,7 +206,7 @@ namespace pfcManager.FoodList
         /// </summary>
         /// <param name="obj"></param>
         public void AddNewFood(object obj = null)
-         {
+        {
             //Проверка значений
             if(FootName == null || FootName == string.Empty)
             {
@@ -258,11 +258,14 @@ namespace pfcManager.FoodList
                 //Создание новой коллекции
                 ObservableCollection<FoodUpd> eatingUpdates = new ObservableCollection<FoodUpd>();
 
+
                 //Получение всей еды, подходящей под описание
                 using(ModelContext mc = new ModelContext())
                 {
                     List<Food> foods = mc.Food.Where(obj => obj.Name.ToLower().Contains(sortText.ToLower())).
                         OrderBy(o => o.Name).ToList();
+
+
                     //Перевод в другой массив и обёртка в производный класс
                     foreach(Food food in foods)
                     {

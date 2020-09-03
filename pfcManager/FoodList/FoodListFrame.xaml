@@ -27,124 +27,178 @@
             Grid.Row="0"
             BorderBrush="Black"
             BorderThickness="3">
-            <StackPanel
-                HorizontalAlignment="Center"
-                Orientation="Vertical"
+            <Grid
                 >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.13*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
                 <!-- Окно ввода для фильтрации -->
-                <Label
-                    Margin="15, 0, 15, 0"
-                    FontSize="16">
-                    Название блюда
-                </Label>
-                <TextBox
-                    Text="{Binding SortText}"
-                    Margin="15, 0, 15, 0"
-                    FontSize="16"
-                    />
+                <Grid
+                    Grid.Row="0"
+                    >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label
+                        Grid.Column="0"
+                        Margin="0, 0, 0, 0"
+                        FontSize="16">
+                        Название блюда
+                    </Label>
+                    <TextBox
+                        Grid.Column="1"
+                        Text="{Binding SortText}"
+                        Margin="0, 7, 7, 0"
+                        FontSize="16"
+                        />
+                </Grid>
                 
                 <!-- Лист с едой -->
                 <ListBox
+                    Grid.Row="1"
                     ItemsSource="{Binding Foods, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="15, 15, 15, 15"
+                    Margin="8, 8, 0, 0"
                     SelectionMode="Single"
-                    MaxHeight="210"
-                    MinWidth="600"
                     SelectedItem="{Binding SelectFood}"
-                    MaxWidth="620"
                     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                    HorizontalContentAlignment="Stretch"
                     >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                Margin="0"
-                                MaxHeight="50"
-                                MinWidth="500"
+                         
+                            <!-- Строчка с едой -->
+                            <Border
+                                BorderBrush="#77AAED"
+                                BorderThickness="3"
                                 >
+                                <Grid
+                                    Margin="0"
+                                 >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="0.9*"/>
+                                        <ColumnDefinition Width="0.9*"/>
+                                        <ColumnDefinition Width="0.9*"/>
+                                        <ColumnDefinition Width="0.9*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                    </Grid.ColumnDefinitions>
                                 
-                                <!--Название пищи-->
-                                <TextBox
-                                    FontSize="15"
-                                    MaxLines="1"
-                                    MaxHeight="20"
-                                    Text="{Binding Path=NameUpd}"
-                                    Margin="10, 5, 5, 5"
-                                    />
-                                
-                                <!--Калорийность-->
-                                <TextBox
-                                    FontSize="15"
-                                    MaxLines="1"
-                                    MaxHeight="20"
-                                    Text="{Binding Path=KkalUpd}"
-                                    Margin="10, 5, 2, 5"
-                                    />
-                                <TextBlock 
-                                    FontSize="15"
-                                    VerticalAlignment="Center"
-                                    TextAlignment="Center"
-                                    Text="Ккал"
+                                    <!--Название пищи-->
+                                    <TextBox
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        MaxHeight="20"
+                                        Text="{Binding Path=NameUpd}"
+                                        Margin="10, 5, 5, 5"
                                     />
                                 
-                                <!--Протеин-->
-                                <TextBox
-                                    FontSize="15"
-                                    MaxLines="1"
-                                    MaxHeight="20"
-                                    Text="{Binding Path=ProteinUpd}"
-                                    Margin="10, 5, 2, 5"
-                                    />
-                                <TextBlock 
-                                    FontSize="15"
-                                    VerticalAlignment="Center"
-                                    Text="Белки"
-                                    />
-                                
-                                <!-- Жиры -->
-                                <TextBox
-                                    FontSize="15"
-                                    MaxLines="1"
-                                    MaxHeight="20"
-                                    Text="{Binding Path=FatsUpd}"
-                                    Margin="10, 5, 2, 5"
-                                    />
-                                <TextBlock 
-                                    FontSize="15"
-                                    VerticalAlignment="Center"
-                                    Text="Жиры"
-                                    />
-                                
-                                <!-- Углевод -->
-                                <TextBox
-                                    FontSize="15"
-                                    MaxLines="1"
-                                    MaxHeight="20"
-                                    Text="{Binding Path=CarbohydratesUpd}"
-                                    Margin="10, 5, 2, 5"
-                                    />
-                                <TextBlock 
-                                    FontSize="15"
-                                    VerticalAlignment="Center"
-                                    Text="Углевод"
-                                    />
-
-                                <!-- Удаление -->
-                                <Button
-                                    FontSize="10"
-                                    VerticalAlignment="Top"
-                                    DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext}"
-                                    Command="{Binding Path=DeleteFood}"
-                                    TextBlock.TextAlignment="Center"
+                                    <!--Калорийность-->
+                                    <StackPanel
+                                        Orientation="Horizontal"
+                                        Grid.Column="1"
                                     >
-                                    Удалить
-                                </Button>
+                                        <TextBox
+                                            FontSize="15"
+                                            MaxHeight="20"
+                                            Text="{Binding Path=KkalUpd}"
+                                            Margin="10, 5, 2, 5"
+                                        />
+                                            
+                                        <TextBlock 
+                                            FontSize="15"
+                                            VerticalAlignment="Center"
+                                            TextAlignment="Center"
+                                            Text="Ккал"
+                                        />
+                                        
+                                    </StackPanel>
+                                    
+                                    <!--Протеин-->
+                                    <StackPanel
+                                        Orientation="Horizontal"
+                                        Grid.Column="2"
+                                    >
+                                        <TextBox
+                                            FontSize="15"
+                                            MaxHeight="20"
+                                            Text="{Binding Path=ProteinUpd}"
+                                            Margin="10, 5, 2, 5"
+                                        />
+                                            
+                                        <TextBlock 
+                                            FontSize="15"
+                                            VerticalAlignment="Center"
+                                            Text="Белки"
+                                        />
+                                        
+                                    </StackPanel>
 
-                            </StackPanel>
+                                    <!-- Жиры -->
+                                    <StackPanel
+                                        Orientation="Horizontal"
+                                        Grid.Column="3"
+                                    >
+                                    
+                                        <TextBox
+                                            FontSize="15"
+                                            MaxHeight="20"
+                                            Text="{Binding Path=FatsUpd}"
+                                            Margin="10, 5, 2, 5"
+                                        />
+                                        
+                                        <TextBlock 
+                                            FontSize="15"
+                                            VerticalAlignment="Center"
+                                            Text="Жиры"
+                                        />
+                                        
+                                    </StackPanel>
+
+                                    <!-- Углевод -->
+                                    <StackPanel
+                                        Grid.Column="4"
+                                        Orientation="Horizontal"
+                                    >
+                                        <TextBox
+                                            FontSize="15"
+                                            MaxHeight="20"
+                                            Text="{Binding Path=CarbohydratesUpd}"
+                                            Margin="10, 5, 2, 5"
+                                        />
+                                            
+                                        <TextBlock 
+                                            FontSize="15"
+                                            VerticalAlignment="Center"
+                                            Text="Углевод"
+                                        />
+                                        
+                                    </StackPanel>
+                                    
+                                    <!-- Удаление -->
+                                    <Button
+                                        Grid.Column="5"
+                                        FontSize="10"
+                                        VerticalAlignment="Top"
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext}"
+                                        Command="{Binding Path=DeleteFood}"
+                                        TextBlock.TextAlignment="Center"
+                                        Margin="0"
+                                    >
+                                        Удалить
+                                    </Button>
+
+                                </Grid>
+                            </Border>
+                            
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+                    
                 </ListBox>
-            </StackPanel>
+            </Grid>
             
         </Border>
 
