@@ -24,5 +24,17 @@ namespace pfcManager.FoodList
             //Указание контекста
             DataContext = new FoodListVM();
         }
+        
+        /// <summary>
+        /// Изменение текста в окне для поиска еды
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //При изменении фильтра для поиска еды
+            ((FoodListVM)DataContext).SortText = SortTextBox.Text;
+
+        }
     }
 }
