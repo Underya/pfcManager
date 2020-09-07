@@ -75,31 +75,23 @@
                                 BorderBrush="#77AAED"
                                 BorderThickness="3"
                                 >
-                                <Grid
+                                <DockPanel
+                                    LastChildFill="False"
                                     Margin="0"
-                                 >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="0.9*"/>
-                                        <ColumnDefinition Width="0.9*"/>
-                                        <ColumnDefinition Width="0.9*"/>
-                                        <ColumnDefinition Width="0.9*"/>
-                                        <ColumnDefinition Width="0.5*"/>
-                                    </Grid.ColumnDefinitions>
-                                
+                                >
                                     <!--Название пищи-->
                                     <TextBox
-                                        Grid.Column="0"
-                                        FontSize="15"
-                                        MaxHeight="20"
+                                        FontSize="16"
                                         Text="{Binding Path=NameUpd}"
                                         Margin="10, 5, 5, 5"
-                                    />
-                                
+                                        Padding="3, 1, 3, 1"
+                                     >
+                            
+                                    </TextBox>
+
                                     <!--Калорийность-->
                                     <StackPanel
                                         Orientation="Horizontal"
-                                        Grid.Column="1"
                                     >
                                         <TextBox
                                             FontSize="15"
@@ -107,20 +99,19 @@
                                             Text="{Binding Path=KkalUpd}"
                                             Margin="10, 5, 2, 5"
                                         />
-                                            
+
                                         <TextBlock 
                                             FontSize="15"
                                             VerticalAlignment="Center"
                                             TextAlignment="Center"
                                             Text="Ккал"
                                         />
-                                        
+
                                     </StackPanel>
-                                    
+
                                     <!--Протеин-->
                                     <StackPanel
                                         Orientation="Horizontal"
-                                        Grid.Column="2"
                                     >
                                         <TextBox
                                             FontSize="15"
@@ -128,39 +119,37 @@
                                             Text="{Binding Path=ProteinUpd}"
                                             Margin="10, 5, 2, 5"
                                         />
-                                            
+
                                         <TextBlock 
                                             FontSize="15"
                                             VerticalAlignment="Center"
                                             Text="Белки"
                                         />
-                                        
+
                                     </StackPanel>
 
                                     <!-- Жиры -->
                                     <StackPanel
                                         Orientation="Horizontal"
-                                        Grid.Column="3"
                                     >
-                                    
+
                                         <TextBox
                                             FontSize="15"
                                             MaxHeight="20"
                                             Text="{Binding Path=FatsUpd}"
                                             Margin="10, 5, 2, 5"
                                         />
-                                        
+
                                         <TextBlock 
                                             FontSize="15"
                                             VerticalAlignment="Center"
                                             Text="Жиры"
                                         />
-                                        
+
                                     </StackPanel>
 
                                     <!-- Углевод -->
                                     <StackPanel
-                                        Grid.Column="4"
                                         Orientation="Horizontal"
                                     >
                                         <TextBox
@@ -169,31 +158,31 @@
                                             Text="{Binding Path=CarbohydratesUpd}"
                                             Margin="10, 5, 2, 5"
                                         />
-                                            
+
                                         <TextBlock 
                                             FontSize="15"
                                             VerticalAlignment="Center"
                                             Text="Углевод"
                                         />
-                                        
+
                                     </StackPanel>
-                                    
+
                                     <!-- Удаление -->
                                     <Button
-                                        Grid.Column="5"
-                                        FontSize="10"
+                                        FontSize="14"
                                         VerticalAlignment="Top"
                                         DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext}"
                                         Command="{Binding Path=DeleteFood}"
                                         TextBlock.TextAlignment="Center"
                                         Margin="0"
+                                        DockPanel.Dock="Right"
                                     >
                                         Удалить
                                     </Button>
 
-                                </Grid>
+                                </DockPanel>
+                                
                             </Border>
-                            
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                     
