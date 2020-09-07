@@ -33,10 +33,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
+            <!-- Сама панель-->
             <StackPanel 
                 Orientation="Horizontal"
                 Grid.Column="1"
-                        >
+            >
                 <Label
                     Margin="30, 0, 0, 0"
                     VerticalAlignment="Center"
@@ -48,6 +49,7 @@
                 <ComboBox
                     Margin="20, 5, 0, 0 "
                     FontSize="20"
+                    MaxHeight="30"
                     ItemsSource="{Binding CountDays}"
                     SelectedItem="{Binding SelectDay, Mode=TwoWay}"
                     >
@@ -68,12 +70,13 @@
             
         </Grid>
         
-        <!--Статистика веса за последние 30 дней-->
+        <!--Заголовок Статистики веса за последние 30 дней-->
         <Label FontSize="25" 
                HorizontalAlignment="Center"
                VerticalAlignment="Bottom"
                Grid.Row="1"
                > История веса</Label>
+        
         <!--Содержимое статистики веса-->
         <Border
             Grid.Row="2"
@@ -82,30 +85,46 @@
             >
             <ListView
                 ItemsSource="{Binding Weights}"
-               >
+                HorizontalContentAlignment="Stretch"
+                >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border
                             Margin="3"
                             BorderThickness="3"
                             BorderBrush="Black">
-                            <StackPanel
-                                Orientation="Horizontal"
+                            <DockPanel
+                                LastChildFill="False"
                                 >
+                                <!--Дата указания веса-->
                                 <TextBlock Text="{Binding ConverterCulture=ru-RU, StringFormat={}{0:D}, Path=Datatime}"
                                            FontSize="17"
-                                           Margin="0,0,15,0"/>
-                                <TextBlock 
-                                    FontSize="20"
-                                    Margin="0,0,2,0"
+                                           VerticalAlignment="Center"
+                                           DockPanel.Dock="Left"
+                                           Margin="5,0,0,0"/>
+                                
+                                <!--Указание сохранения веса -->
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    DockPanel.Dock="Right"
+                                    Margin="0,0,5,0"
                                     >
-                                    Вес:
-                                </TextBlock>
-                                <TextBlock Text="{Binding Path=Value}"
-                                           VerticalAlignment="Bottom"
-                                           FontSize="17"
-                                           />
-                            </StackPanel>
+                                    <TextBlock 
+                                        FontSize="20"
+                                        VerticalAlignment="Center"
+                                        Margin="0,0,3,0"
+                                        >
+                                        Вес:
+                                    </TextBlock>
+                                    <TextBlock 
+                                        Text="{Binding Path=Value}"
+                                        VerticalAlignment="Center"
+                                        FontWeight="Bold"
+                                        FontSize="20"
+                                        />
+                                </StackPanel>
+                                
+                            </DockPanel>
                         </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -113,7 +132,7 @@
             </ListView>
         </Border>
 
-        <!-- Статистика ккалорий-->
+        <!-- Заголовок Статистики ккалорий-->
         <Label FontSize="25" 
                HorizontalAlignment="Center"
                VerticalAlignment="Bottom"
@@ -132,30 +151,50 @@
             >
             <ListView
                 ItemsSource="{Binding Kkals}"
+                HorizontalContentAlignment="Stretch"
                >
                 <ListView.ItemTemplate>
                     <DataTemplate>
+                        
+                        <!--Строка калорий за один день-->
                         <Border
                             Margin="3"
                             BorderThickness="3"
                             BorderBrush="Black">
-                            <StackPanel
-                                Orientation="Horizontal"
+                            
+                            <DockPanel
+                                LastChildFill="False"
                                 >
+                                <!-- Дата записей за день-->
                                 <TextBlock Text="{Binding ConverterCulture=ru-RU, StringFormat={}{0:D}, Path=Day}"
                                            FontSize="17"
-                                           Margin="0,0,15,0"/>
-                                <TextBlock 
-                                    FontSize="17"
-                                    Margin="0,0,2,0"
-                                    >
-                                    Калории:
-                                </TextBlock>
-                                <TextBlock Text="{Binding Path=Summ}"
-                                           FontSize="17"
-                                           VerticalAlignment="Bottom"
+                                           DockPanel.Dock="Left"
+                                           Margin="0,0,15,0"
+                                           VerticalAlignment="Center"
                                            />
-                            </StackPanel>
+                                
+                                <!--Количество калорий-->
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    DockPanel.Dock="Right"
+                                    >
+                                    <TextBlock 
+                                        FontSize="17"
+                                        Margin="0,0,2,0"
+                                        VerticalAlignment="Center"
+                                        >
+                                        Калории:
+                                    </TextBlock>
+                                    <TextBlock 
+                                        Text="{Binding Path=Summ}"
+                                        FontSize="17"
+                                        VerticalAlignment="Center"
+                                        FontWeight="Bold"
+                                        />
+                                    
+                                </StackPanel>
+                            </DockPanel>
+                            
                         </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
