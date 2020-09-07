@@ -34,7 +34,6 @@ namespace pfcManager.FoodList
         {
             //При изменении фильтра для поиска еды
             ((FoodListVM)DataContext).SortText = SortTextBox.Text;
-
         }
     }
 }

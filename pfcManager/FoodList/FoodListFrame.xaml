@@ -208,6 +208,7 @@
                 BorderThickness="3"
                 Margin="10, 5, 10, 10"
                 >
+                
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2.5*"/>
@@ -228,11 +229,13 @@
                         Grid.Column="0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
+                        MaxHeight="40"
                         >Название</Label>
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="0"
                         Margin="10, 2, 10, 30"
+                        MaxHeight="40"
                         Text="{Binding FootName}"
                         />
                     
@@ -242,11 +245,13 @@
                         Grid.Column="1"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
+                        MaxHeight="40"
                         >Калорийность</Label>
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
                         Margin="10, 2, 10, 30"
+                        MaxHeight="40"
                         Text="{Binding FootKKal}"
                         />
 
@@ -254,12 +259,14 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="2"
+                        MaxHeight="40"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         >Белки</Label>
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="2"
+                        MaxHeight="40"
                         Text="{Binding Protein}"
                         Margin="10, 2, 10, 30"
                         />
@@ -268,6 +275,7 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="3"
+                        MaxHeight="40"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         >Жиры</Label>
@@ -275,6 +283,7 @@
                         Grid.Row="1"
                         Text="{Binding Fats}"
                         Grid.Column="3"
+                        MaxHeight="40"
                         Margin="10, 2, 10, 30"
                         />
 
@@ -282,12 +291,14 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="4"
+                        MaxHeight="40"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         >Углеводы</Label>
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="4"
+                        MaxHeight="40"
                         Text="{Binding Carb}"
                         Margin="10, 2, 10, 30"
                         />
@@ -302,6 +313,7 @@
                     </Button>
                     
                 </Grid>
+                
             </Border>
         </DockPanel>
 
