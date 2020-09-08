@@ -175,8 +175,8 @@ namespace pfcManager.FirstPage
         float eatingWeight = 0.0F;
 
         /// <summary>
-        /// </summary>
         /// Вес блюда
+        /// </summary>
         public float EatingWeight 
         {
             get
