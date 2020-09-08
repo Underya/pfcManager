@@ -23,5 +23,16 @@ namespace pfcManager.DayStatist
             InitializeComponent();
             DataContext = new StateFrameMV();
         }
+
+        /// <summary>
+        /// Обработка нажатия на строку каллорий
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DockPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SumKkal sumKkal = ((DockPanel)sender).DataContext as SumKkal;
+            ((StateFrameMV)DataContext).OpenStatDay.Execute(sumKkal.Day);
+        }
     }
 }

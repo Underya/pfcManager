@@ -26,9 +26,7 @@ namespace pfcManager.DayStatist
             {
                 return new AcceptCommand(o =>
                {
-                   DateTime cd = DateTime.Now;
-                   cd.AddDays(-1);
-                   MainMenuVM.SetCurrentDayStatistick(cd);
+                   MainMenuVM.SetCurrentDayStatistick((DateTime)o);
                });
             }
             set

@@ -163,6 +163,7 @@
                             BorderBrush="Black">
                             
                             <DockPanel
+                                MouseRightButtonDown="DockPanel_MouseDown"
                                 LastChildFill="False"
                                 >
                                 <!-- Дата записей за день-->
