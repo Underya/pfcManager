@@ -27,7 +27,7 @@ namespace pfcManager.DayStatist
         public CurrentDayStatistick(DateTime day) 
         {
             InitializeComponent();
-            DataContext = new FirstPageVM(day);
+            DataContext = new CurrentDayStatVM(day);
         }
 
         /// <summary>

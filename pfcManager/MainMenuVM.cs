@@ -182,5 +182,13 @@ namespace pfcManager
         {
             ActivMainMenu.SelectFrame = new CurrentDayStatistick(day);
         }
+
+        /// <summary>
+        /// Устанока меню с историей
+        /// </summary>
+        public static void SetHistoryMenu()
+        {
+            ActivMainMenu.SelectDayFrame.Execute(null);
+        }
     }
 }

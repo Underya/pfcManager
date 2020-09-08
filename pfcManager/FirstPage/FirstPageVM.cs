@@ -216,7 +216,7 @@ namespace pfcManager.FirstPage
                 //Очищение
                 eatings.Clear();
                 //Получение всей информации о еде за сегодня
-                List<Eating> eatingsCol = Eating.GetEatings(DateTime.Now);
+                List<Eating> eatingsCol = Eating.GetEatings(CurrentDay);
                 //Обёртка их в класс коллекции
                 foreach(Eating eating in eatingsCol)
                 {

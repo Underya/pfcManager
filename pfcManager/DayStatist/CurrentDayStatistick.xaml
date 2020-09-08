@@ -55,6 +55,7 @@
         <!-- Кнопка перехода в историю -->
         <Button
             FontSize="30"
+            Command="{Binding ExitToHisoric}"
             Margin="50, 15, 50, 15"
             >
             Назад
