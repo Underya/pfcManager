@@ -19,6 +19,10 @@ namespace pfcManager.FirstPage
     class FirstPageVM :
         INotifyPropertyChanged
     {
+        /// <summary>
+        /// День, о котором получается и сохраняется информация
+        /// </summary>
+        DateTime CurrentDay = DateTime.Now;
 
         /// <summary>
         /// Комманда удаления позиции
@@ -60,6 +64,20 @@ namespace pfcManager.FirstPage
         /// Выбрнная еда из мнею добавления
         /// </summary>
         EatingUpdate selectEatingUpd;
+
+        /// <summary>
+        /// Конкструктор с созданием объекта для текущего дня
+        /// </summary>
+        public FirstPageVM() { }
+
+        /// <summary>
+        /// Создание модели для указанного дня
+        /// </summary>
+        /// <param name="CurrentDay"></param>
+        public FirstPageVM(DateTime CurrentDay)
+        {
+            this.CurrentDay = CurrentDay;
+        }
 
         /// <summary>
         /// Выбранная еда в меню еды
@@ -223,7 +241,7 @@ namespace pfcManager.FirstPage
                 //Сумма калорий за день
                 double summ = 0;
                 //Получение конца и начала дня
-                DateTime start = CurrentDate.StartThisDay(), end = CurrentDate.EndThisDay();
+                DateTime start = CurrentDate.StartCurrentDay(CurrentDay), end = CurrentDate.EndCurrentDay(CurrentDay);
                 using(ModelContext mc = new ModelContext())
                 {
                     //Получение всех приёмов пищи за сегодя для текущего пользователя
@@ -259,10 +277,19 @@ namespace pfcManager.FirstPage
             get 
             {
                 float weight = 70.0F;
+                //ПОлучение информации о дне
+                DateTime start = CurrentDate.StartCurrentDay(CurrentDay), end = CurrentDate.EndCurrentDay(CurrentDay);
                 //Получение последнего актуального веса
                 using(ModelContext mc = new ModelContext())
                 {
-                    var res = mc.Weight.Where(o => o.Idusers == PanelManager.CurrentUserId).OrderByDescending(o=>o.Datatime);
+                    var res = mc.Weight.
+                        //Только для текущего пользователя
+                        Where(o => o.Idusers == PanelManager.CurrentUserId).
+                        //Только в указанный день
+                        Where(o => o.Datatime >= start && o.Datatime <= end).
+                        //Получение последней записи
+                        OrderByDescending(o=>o.Datatime);
+
                     //Если нет информации 
                     if (res.Count() == 0) return weight;
 
@@ -320,7 +347,11 @@ namespace pfcManager.FirstPage
             }
 
             Eating eating = new Eating();
-            eating.Datatime = DateTime.Now;
+
+            //Указание даты добавления еды
+            DateTime now = DateTime.Now;
+            eating.Datatime = new DateTime(CurrentDay.Year, CurrentDay.Month, CurrentDay.Day, now.Hour, now.Minute, now.Second);
+
             eating.Idfood = SelectedFood.Id;
             eating.Idusers = PanelManager.CurrentUserId;
             eating.Weight = eatingWeight;

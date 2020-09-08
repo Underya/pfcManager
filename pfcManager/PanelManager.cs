@@ -68,5 +68,14 @@ namespace pfcManager
         {
 
         }
+
+        /// <summary>
+        /// Открытие окна со статистикой за указанный день
+        /// </summary>
+        /// <param name="day"></param>
+        static public void GoCurrentDayStatistick(DateTime day)
+        {
+
+        }
     }
 }

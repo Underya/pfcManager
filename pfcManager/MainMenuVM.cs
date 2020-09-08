@@ -36,6 +36,11 @@ namespace pfcManager
         }
 
         /// <summary>
+        /// Последнее активное меню пользователя
+        /// </summary>
+        public static MainMenuVM ActivMainMenu = null;
+
+        /// <summary>
         /// Модель для управления панелью
         /// </summary>
         public MainMenuVM()
@@ -43,6 +48,8 @@ namespace pfcManager
             userSave = PanelManager.CurrentUser;
             //По умолчанию открывается главная страница
             selectFrame = new firstPage();
+            //Сохранение ссылки
+            ActivMainMenu = this;
         }
 
         /// <summary>
@@ -165,6 +172,15 @@ namespace pfcManager
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        /// <summary>
+        /// Открытие фрейма со статистикой за указнный день
+        /// </summary>
+        /// <param name="day"></param>
+        public static void SetCurrentDayStatistick(DateTime day)
+        {
+            ActivMainMenu.SelectFrame = new CurrentDayStatistick(day);
         }
     }
 }

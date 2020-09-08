@@ -1,0 +1,332 @@
+﻿<UserControl x:Class="pfcManager.DayStatist.CurrentDayStatistick"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:pfcManager.FirstPage"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="AntiqueWhite"
+             >
+    <UserControl.Resources>
+        <Style
+             TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="3, 0, 3, 0"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid
+        Keyboard.KeyDown="Grid_KeyDown"
+        >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="1*"
+                              x:Name="MyColumn"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+
+        <!--Показ количества колорий за сегодняшний день-->
+        <StackPanel
+            Grid.Column="1"
+            >
+            <Label 
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Center"
+                FontSize="16"
+                Margin="1">Сумма калорий</Label>
+            <TextBox
+                DockPanel.Dock="Top"
+                Margin="100, 0, 100, 0"
+                IsReadOnly="True"
+                IsTabStop="False"
+                MinHeight="30"
+                FontSize="15"
+                Background="#DEDEDE"
+                TextAlignment="Center"
+                Text="{Binding CurrentCall}"
+                />
+        </StackPanel>
+
+        <!-- Кнопка перехода в историю -->
+        <Button
+            FontSize="30"
+            Margin="50, 15, 50, 15"
+            >
+            Назад
+        </Button>
+        
+
+        <!-- Панель, которая показывает еду за текущий день-->
+        <Border
+            Grid.Row="1"
+            Grid.Column="1"
+            BorderBrush="Black"
+            BorderThickness="3"
+            Margin="3"
+            >
+            <ListBox 
+                Margin="10, 10, 10, 10"
+                x:Name="BoxTable"
+                HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Eatings, UpdateSourceTrigger=PropertyChanged}"
+                MouseDown="Button_MouseLeftButtonUp"
+                GotMouseCapture="Button_MouseEnter">
+                <!--Добавления обработчика событий для элементов ListBox-->
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="GotMouseCapture" Handler="Button_MouseEnter"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            BorderBrush="Black"
+                            BorderThickness="2" 
+                            >
+                            <Grid
+                            >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="1*"
+                                        />
+                                    <ColumnDefinition
+                                        Width="1*"
+                                        />
+                                    <ColumnDefinition
+                                        Width="1.3*"
+                                        />
+                                    <ColumnDefinition
+                                        Width="1.3*"
+                                        />
+                                    <ColumnDefinition
+                                        Width="0.9*"
+                                        />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Дата-->
+                                <TextBlock
+                                    Grid.Column="0"
+                                    FontSize="15"
+                                    Margin="3, 0, 0, 0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding StringFormat=\{0:HH:mm\}, Path=Datatime}"/>
+
+                                <!-- Название блюда-->
+                                <TextBlock 
+                                    Grid.Column="1"
+                                    DockPanel.Dock="Left"
+                                    FontSize="14"
+                                    VerticalAlignment="Center"
+                                    Margin="4, 0, 4, 0"
+                                    Text="{Binding Path=FoodName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <!-- Вес блюда-->
+                                <StackPanel 
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Grid.Column="2"
+                                    Orientation="Horizontal">
+
+                                    <Border
+                                        BorderBrush="Gray"
+                                        BorderThickness="1"
+                                        Margin="0,0,3,0"
+                                        >
+                                        <TextBox 
+                                            DockPanel.Dock="Top"
+                                            FontSize="17" 
+                                            Margin="0, 0, 0, 0"
+                                            VerticalAlignment="Center"
+                                            BorderThickness="0"
+                                            Text="{Binding Path=WeightUpd}"/>
+
+                                    </Border>
+
+                                    <TextBlock
+                                        DockPanel.Dock="Top"
+                                        Margin="0, 0, 0, 4"
+                                        VerticalAlignment="Center"
+                                        FontSize="15"
+                                        Text="Грамм"/>
+
+                                </StackPanel>
+
+                                <!-- Суммарная калорийность-->
+                                <StackPanel 
+                                    HorizontalAlignment="Left"
+                                    Grid.Column="3"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+
+                                    <TextBlock 
+                                        DockPanel.Dock="Right"
+                                        FontSize="15"
+                                        Foreground="Black"
+                                        FontWeight="Black"
+                                        VerticalAlignment="Center"
+                                        Margin="4, 0, 3, 0"
+                                        Text="{Binding Path=GetResultKkal}"/>
+
+                                    <TextBlock
+                                        DockPanel.Dock="Right"
+                                        VerticalAlignment="Center"
+                                        Margin="0, 0, 0, 0"
+                                        FontSize="15"
+                                        Text="Ккал"/>
+
+                                </StackPanel>
+
+                                <!--Кнопка удаления-->
+                                <Button
+                                    FontSize="14"
+                                    Grid.Column="5"
+                                    Margin="0, 3, 6, 3"
+                                    GotMouseCapture="Button_MouseEnter"
+                                    DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},  Path=DataContext}"
+                                    Command="{Binding DeleteEatingCommand}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=SelectedItem}"
+                                    Content="Удалить"/>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <!-- Выбор еды и указание её веса-->
+        <Border
+            Grid.Row="1"
+            Grid.Column="0"
+            BorderBrush="Black"
+            BorderThickness="3"
+            Margin="3"
+            >
+            <DockPanel
+                LastChildFill="False"
+                Margin="5">
+
+                <!-- Выбор блюда -->
+                <Label
+                Margin="5, 40, 5, 5"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                DockPanel.Dock="Top">
+                    Блюдо
+                </Label>
+                <ComboBox
+                    ItemsSource="{Binding Foods}"
+                    FontSize="20"
+                    DockPanel.Dock="Top"
+                    SelectedItem="{Binding SelectedFood, Mode=TwoWay}"
+                    StaysOpenOnEdit="True"
+                    IsEditable="True"
+                    IsTextSearchEnabled="True"
+                    TextSearch.TextPath="Name"
+                    >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=Name}"
+                                           Margin="5, 3, 10, 2"
+                                           />
+                                <TextBlock Text="{Binding Path=Kkal}"
+                                           Margin="5, 3, 10, 2"
+                                           />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <!--Ккил и указание веса -->
+                <Grid
+                    Margin="3"
+                    DockPanel.Dock="Top">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="136*"/>
+                        <ColumnDefinition Width="21*"/>
+                        <ColumnDefinition Width="115*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+                    <!-- ККал-->
+                    <Label 
+                        Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        FontSize="20" Margin="0,0,0,30" Grid.RowSpan="2">
+                        Ккал
+                    </Label>
+                    <TextBox
+                        Margin="1,1,1,1"
+                        Grid.Row="1"
+                        IsTabStop="False"
+                        FontSize="20"
+                        IsReadOnly="True"
+                        Background="#DEDEDE"
+                        DataContext="{Binding SelectedFood}"
+                        Text="{Binding Path=Kkal}"
+                        />
+
+                    <!--Вес блюда-->
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        FontSize="20" Grid.ColumnSpan="2" Margin="0,0,0,30" Grid.RowSpan="2"
+                        >
+                        Вес в граммах
+                    </Label>
+                    <TextBox 
+                        x:Name="InputWeight"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontSize="20"
+                        Margin="1,1,0,1"
+                        Text="{Binding EatingWeight}" Grid.ColumnSpan="2"/>
+                </Grid>
+
+                <!-- Общая калорийность-->
+                <Label
+                    DockPanel.Dock="Top"
+                    FontSize="20"
+                    Margin="20, 15, 20, 0"
+                    HorizontalAlignment="Center"
+                    Content="Общая калорийность"
+                    />
+                <TextBox
+                    IsTabStop="False"
+                    FontSize="18"
+                    Margin="40, 0, 40, 0"
+                    DockPanel.Dock="Top"
+                    IsReadOnly="True"
+                    Background="#DEDEDE"
+                    Text="{Binding ResultKkal}"
+                    />
+
+                <!--Кнопка добавления -->
+                <Button 
+                    Margin="40, 30, 40, 0"
+                    DockPanel.Dock="Top"
+                    FontSize="20"
+                    Command="{Binding SaveCommand}"
+                    >
+                    Добавить
+                </Button>
+
+            </DockPanel>
+        </Border>
+
+    </Grid>
+</UserControl>
+

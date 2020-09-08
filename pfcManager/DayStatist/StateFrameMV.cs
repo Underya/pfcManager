@@ -20,6 +20,23 @@ namespace pfcManager.DayStatist
         /// </summary>
         CountDaysStatic selectDay = null;
 
+        public AcceptCommand OpenStatDay
+        {
+            get
+            {
+                return new AcceptCommand(o =>
+               {
+                   DateTime cd = DateTime.Now;
+                   cd.AddDays(-1);
+                   MainMenuVM.SetCurrentDayStatistick(cd);
+               });
+            }
+            set
+            {
+
+            }
+        }
+
         /// <summary>
         /// Выбранная количество дней
         /// </summary>
