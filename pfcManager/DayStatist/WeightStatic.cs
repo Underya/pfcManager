@@ -56,6 +56,8 @@ namespace pfcManager.DayStatist
 
             Weight resweight = new Weight();
             resweight.Value = Summ / (float)count;
+            //Округление веса
+            resweight.Value = (float)Math.Round((double)resweight.Value, 2);
             resweight.Datatime = weights[0].Datatime;
             resweight.Idusers = weights[0].Idusers;
 
