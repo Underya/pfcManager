@@ -1,8 +1,9 @@
-﻿using System;
+﻿using pfcManager.Model;
+using pfcManager.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
-using pfcManager.Model;
 
 namespace pfcManager
 {
@@ -50,12 +51,12 @@ namespace pfcManager
         static public void GoAuthotizatePanel()
         {
 
-            mainWindow.Content = new AuthorizationPanel(AuthorizationModel.CreateEnterModel());
+            mainWindow.Content = new AuthorizationPanel(AuthorizationEntryModel.CreateEnterModel());
         }
 
         static public void LogOut()
         {
-            mainWindow.Content = new AuthorizationPanel(AuthorizationModel.CreateLogOutModel());
+            mainWindow.Content = new AuthorizationPanel(AuthorizationEntryModel.CreateLogOutModel());
         }
 
         /// <summary>

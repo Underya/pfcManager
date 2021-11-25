@@ -1,4 +1,6 @@
-﻿using System;
+﻿using pfcManager;
+using pfcManager.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,7 +20,7 @@ namespace pfcManager
     /// </summary>
     public partial class AuthorizationPanel : UserControl
     {
-        internal AuthorizationPanel(AuthorizationModel authorizationModel)
+        internal AuthorizationPanel(AuthorizationEntryModel authorizationModel)
         {
             InitializeComponent();
             DataContext = authorizationModel;
@@ -32,7 +34,7 @@ namespace pfcManager
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //Передача информации о событии загрузки
-            ((AuthorizationModel)(DataContext)).Load();
+            ((AuthorizationEntryModel)(DataContext)).LoadPanel();
         }
 
         /// <summary>
@@ -45,7 +47,7 @@ namespace pfcManager
             //При нажатии на клавишу Enter - попытка авторизации
             if(e.Key == Key.Enter)
             {
-                ((AuthorizationModel)DataContext).AuthorizationCommands.Execute(PasswordBox);
+                ((AuthorizationEntryModel)DataContext).AuthorizationCommands.Execute(PasswordBox);
             }
         }
     }

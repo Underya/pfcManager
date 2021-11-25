@@ -1,9 +1,9 @@
 ﻿using pfcManager.Model;
+using pfcManager.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using pfcManager.Model;
 using System.Linq;
 
 namespace pfcManager.DayStatist
