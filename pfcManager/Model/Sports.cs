@@ -14,6 +14,6 @@ namespace pfcManager.Model
         public long Idsports { get; set; }
 
         public virtual Typesport IdsportsNavigation { get; set; }
-        public virtual Users IdusersNavigation { get; set; }
+        public virtual UsersDB IdusersNavigation { get; set; }
     }
 }

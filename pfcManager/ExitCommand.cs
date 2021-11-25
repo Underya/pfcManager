@@ -21,7 +21,7 @@ namespace pfcManager
         /// </summary>
         void Exit(object obj)
         {
-            PanelManager.GoAuthotizatePanel(true);
+            PanelManager.LogOut();
         }
 
         /// <summary>

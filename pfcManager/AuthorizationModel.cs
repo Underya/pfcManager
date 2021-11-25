@@ -14,23 +14,19 @@ namespace pfcManager
     /// <summary>
     /// View-Model для панели авторизации
     /// </summary>
-    class AuthorizationModel : INotifyPropertyChanged
+    internal class AuthorizationModel : INotifyPropertyChanged
     {
-        AuthorizationCommand authorizationCommand = null;
+        public static AuthorizationModel CreateEnterModel()
+        {
+            return new AuthorizationModel(false);
+        }
 
-        public string ErrorText { get; set; }
+        public static AuthorizationModel CreateLogOutModel()
+        {
+            return new AuthorizationModel(true);
+        }
 
-        public string Login { set; get; }
-
-        /// <summary>
-        /// Сохранение информации о том, надо ли запоминать пользователя
-        /// </summary>
-        public bool SaveUser { get; set; }
-
-        /// <summary>
-        /// Конструктор по умолчанию
-        /// </summary>
-        public AuthorizationModel(bool exit = false)
+        protected AuthorizationModel(bool exit = false)
         {
             SaveUser = true;
             //Если происходит выход
@@ -40,6 +36,15 @@ namespace pfcManager
                 ClearSetting();
             }
         }
+
+        AuthorizationCommand authorizationCommand = null;
+
+        public string ErrorText { get; set; }
+        public string Login { set; get; }
+        /// <summary>
+        /// Сохранение информации о том, надо ли запоминать пользователя
+        /// </summary>
+        public bool SaveUser { get; set; }
 
         /// <summary>
         /// Пароль пользователя
@@ -51,6 +56,9 @@ namespace pfcManager
         /// </summary>
         public void Load()
         {
+            Settings1.Default.UserLogin = "test";
+            Settings1.Default.PasswordUser= "test";
+
             //Попытка получить информацию о логине и пароле
             if (Settings1.Default.UserLogin == string.Empty)
                 return;

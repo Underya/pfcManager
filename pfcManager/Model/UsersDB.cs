@@ -4,9 +4,9 @@ using System.ComponentModel;
 
 namespace pfcManager.Model
 {
-    public partial class Users
+    public partial class UsersDB
     {
-        public Users()
+        public UsersDB()
         {
             Eating = new HashSet<Eating>();
             Sports = new HashSet<Sports>();
