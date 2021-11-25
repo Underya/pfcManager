@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -8,6 +9,7 @@ namespace pfcManager.Model
     {
         public ModelContext()
         {
+            Database.EnsureCreated();
         }
 
         public ModelContext(DbContextOptions<ModelContext> options)
@@ -24,11 +26,17 @@ namespace pfcManager.Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                string connectingString = Settings1.Default.ConnectionString;
-                optionsBuilder.UseNpgsql(connectingString);
-            }
+            optionsBuilder.UseSqlite(ConnectionString());
+        }
+        string ConnectionString()
+        {
+            var stringBuilder = new SqliteConnectionStringBuilder();
+
+            stringBuilder.DataSource = "db.db";
+            stringBuilder.Mode = SqliteOpenMode.ReadWrite;
+            stringBuilder.Cache = SqliteCacheMode.Shared;
+
+            return stringBuilder.ToString();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -40,6 +40,7 @@ namespace pfcManager.Model
             this.Lastname = user.Lastname;
             this.Midname = user.Midname;
             this.Height = user.Height;
+            this.Login = user.Login;
             this.Salt = user.Salt;
             this.Hash = user.Hash;
             this.Sex = user.Sex;
@@ -63,10 +64,11 @@ namespace pfcManager.Model
         {
             using (ModelContext tc = new ModelContext())
             {
-                UserSave us = null; 
+                UserSave us = null;
                 UsersDB users = tc.Users.Where(p => p.Login == login).FirstOrDefault();
                 if (users == null) return null;
                 us = new UserSave(users);
+                
                 return us;
             }
         }

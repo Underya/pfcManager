@@ -1,12 +1,7 @@
 ﻿using pfcManager.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Runtime.CompilerServices;
 using System.ComponentModel;
-using System.Windows.Input;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace pfcManager
 {
@@ -56,9 +51,6 @@ namespace pfcManager
         /// </summary>
         public void Load()
         {
-            Settings1.Default.UserLogin = "test";
-            Settings1.Default.PasswordUser= "test";
-
             //Попытка получить информацию о логине и пароле
             if (Settings1.Default.UserLogin == string.Empty)
                 return;
@@ -87,7 +79,7 @@ namespace pfcManager
             //Указание пользователю
             ErrorText = "Авторизация...";
             PasswordBox passwordBox = obj as PasswordBox;
-            Authorization(Login, passwordBox.Password);   
+            Authorization(Login, passwordBox.Password);
         }
 
         /// <summary>
@@ -117,9 +109,9 @@ namespace pfcManager
             PanelManager.GoMainMenu();
         }
 
-       /// <summary>
-       /// Сохранение лоигна и пароля в настройках, если флаг указан
-       /// </summary>
+        /// <summary>
+        /// Сохранение лоигна и пароля в настройках, если флаг указан
+        /// </summary>
         void SaveLoginPassword()
         {
             //Если произошёл автозаход, то не надо сохранять параметр
