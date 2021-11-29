@@ -116,7 +116,6 @@
                 x:Name="BoxTable"
                 HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding Eatings, UpdateSourceTrigger=PropertyChanged}"
-                MouseDown="Button_MouseLeftButtonUp"
                 GotMouseCapture="Button_MouseEnter">
                 <!--Добавления обработчика событий для элементов ListBox-->
                 <ListBox.ItemContainerStyle>
@@ -213,7 +212,7 @@
                                         FontWeight="Black"
                                         VerticalAlignment="Center"
                                         Margin="4, 0, 3, 0"
-                                        Text="{Binding Path=GetResultKkal}"/>
+                                        Text="{Binding Path=GetResultKkal, Mode=OneWay}"/>
                                     
                                     <TextBlock
                                         DockPanel.Dock="Right"
@@ -353,7 +352,7 @@
                     DockPanel.Dock="Top"
                     IsReadOnly="True"
                     Background="#DEDEDE"
-                    Text="{Binding ResultKkal}"
+                    Text="{Binding ResultKkal, Mode=OneWay}"
                     />
 
                 <!--Кнопка добавления -->

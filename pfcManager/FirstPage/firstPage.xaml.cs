@@ -47,12 +47,7 @@ namespace pfcManager.FirstPage
                 ((FirstPageVM)DataContext).SaveCommand.Execute(null);
             }
         }
-
-        private void Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            object new_obj = sender;
-        }
-
+      
         /// <summary>
         /// Поднимающиеся событие, вызваемое при нажатии мышки на кнопку удаления
         /// </summary>

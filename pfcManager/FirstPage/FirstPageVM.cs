@@ -106,17 +106,22 @@ namespace pfcManager.FirstPage
                 {
                     try
                     {
-                        //Если была успешно добавлена деа
-                        if( AddNewEating() == 1)
-                            //Очищается меню ввода
-                            ClearDate();
-                    } catch(Exception exc)
+                        AddNewMessange();
+                    }
+                    catch (Exception exc)
                     {
                         MessageBox.Show(exc.Message, "Ошибка!");
                         return;
                     }
                 });
             } 
+        }
+        void AddNewMessange()
+        {
+            //Если была успешно добавлена деа
+            if (AddNewEating() == 1)
+                //Очищается меню ввода
+                ClearDate();
         }
 
         /// <summary>
@@ -199,10 +204,6 @@ namespace pfcManager.FirstPage
             get
             {
                 return (new Kcal(SelectedFood.Kkal, EatingWeight));
-            }
-            set
-            {
-
             }
         }
 
