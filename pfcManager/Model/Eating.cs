@@ -36,6 +36,6 @@ namespace pfcManager.Model
         }
 
         public virtual Food IdfoodNavigation { get; set; }
-        public virtual UsersDB IdusersNavigation { get; set; }
+        public virtual Users IdusersNavigation { get; set; }
     }
 }

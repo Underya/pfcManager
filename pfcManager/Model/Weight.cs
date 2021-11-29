@@ -10,6 +10,6 @@ namespace pfcManager.Model
         public float Value { get; set; }
         public long Idusers { get; set; }
 
-        public virtual UsersDB IdusersNavigation { get; set; }
+        public virtual Users IdusersNavigation { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace pfcManager.Model
     /// <summary>
     /// Сохранение информации о пользователе в виде соли
     /// </summary>
-    public class UserSave : UsersDB
+    public class UserSave : Users
     {
         /// <summary>
         /// Сохранение пароля в закрытом виде
@@ -24,7 +24,7 @@ namespace pfcManager.Model
             this.Salt = salt;
         }
 
-        public UserSave(UsersDB user)
+        public UserSave(Users user)
         {
             SetInfoUser(user);
         }
@@ -33,7 +33,7 @@ namespace pfcManager.Model
         /// Получение информации из базового объекта
         /// </summary>
         /// <param name="user"></param>
-        void SetInfoUser(UsersDB user)
+        void SetInfoUser(Users user)
         {
             this.Firstname = user.Firstname;
             this.Datebridh = user.Datebridh;
@@ -65,7 +65,7 @@ namespace pfcManager.Model
             using (ModelContext tc = new ModelContext())
             {
                 UserSave us = null;
-                UsersDB users = tc.Users.Where(p => p.Login == login).FirstOrDefault();
+                Users users = tc.Users.Where(p => p.Login == login).FirstOrDefault();
                 if (users == null) return null;
                 us = new UserSave(users);
                 
@@ -83,7 +83,7 @@ namespace pfcManager.Model
         {
             using (ModelContext tc = new ModelContext())
             {
-                UsersDB u = GetUser(login); 
+                Users u = GetUser(login); 
 
                 if (u == null) return false;
 

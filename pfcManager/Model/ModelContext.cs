@@ -21,7 +21,7 @@ namespace pfcManager.Model
         public virtual DbSet<Food> Food { get; set; }
         public virtual DbSet<Sports> Sports { get; set; }
         public virtual DbSet<Typesport> Typesport { get; set; }
-        public virtual DbSet<UsersDB> Users { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Weight> Weight { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -153,7 +153,7 @@ namespace pfcManager.Model
                     .HasMaxLength(200);
             });
 
-            modelBuilder.Entity<UsersDB>(entity =>
+            modelBuilder.Entity<Users>(entity =>
             {
                 entity.ToTable("users");
 
